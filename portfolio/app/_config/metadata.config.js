@@ -1,32 +1,32 @@
 /** @type {import('next').Metadata} */
 export const rootMetadata = {
-  metadataBase: new URL('https://dennis-snellenberg-portfolio.vercel.app/'),
+  metadataBase: new URL('https://gautam-prabhu-portfolio.vercel.app/'),
   title: {
-    template: '%s | Dennis Snellenberg',
-    default: 'Dennis Snellenberg • Freelance Designer & Developer',
+    template: '%s | Gautam Prabhu',
+    default: 'Gautam Prabhu • Software Developer',
   },
   description:
-    'Helping brands thrive in the digital world. Located in The Netherlands. Delivering tailor-made digital designs and building interactive websites from scratch. © Code by Dennis',
-  generator: 'Dennis Snellenberg',
-  applicationName: 'Dennis Snellenberg',
+    'Aspiring Software Developer specializing in Web Full-Stack, Backend & Systems development with Cloud fundamentals. Based in Manipal, India. Turning ideas into reliable systems.',
+  generator: 'Gautam Prabhu',
+  applicationName: 'Gautam Prabhu Portfolio',
   referrer: 'origin-when-cross-origin',
-  keywords: ['Design', 'Develope', 'Freelance'],
+  keywords: ['Software Development', 'Full-Stack', 'Backend', 'Systems', 'Cloud', 'React', 'Node.js', 'Python'],
   authors: [
-    { name: 'Ali Bagheri', url: 'https://www.github.com/alibagheri2079' },
+    { name: 'Gautam Prabhu', url: 'https://github.com/gautamprabhu07' },
   ],
-  creator: 'Ali Bagheri',
-  publisher: 'Ali Bagheri',
+  creator: 'Gautam Prabhu',
+  publisher: 'Gautam Prabhu',
   twitter: {
     card: 'summary_large_image',
-    title: 'Dennis Snellenberg',
+    title: 'Gautam Prabhu',
     description:
-      'Helping brands thrive in the digital world. Located in The Netherlands. Delivering tailor-made digital designs and building interactive websites from scratch. © Code by Dennis',
-    siteId: '1467726470533754880',
-    creator: '@AliBagheri2079',
-    creatorId: '1467726470533754880',
+      'Aspiring Software Developer specializing in Web Full-Stack, Backend & Systems development with Cloud fundamentals. Based in Manipal, India.',
+    siteId: '',
+    creator: '@gautamprabhu',
+    creatorId: '',
     images: {
-      url: 'https://dennis-snellenberg-portfolio.vercel.app/screenshot.png',
-      alt: 'Portfolio Screenshot',
+      url: 'https://gautam-prabhu-portfolio.vercel.app/screenshot.png',
+      alt: 'Gautam Prabhu Portfolio',
     },
   },
   robots: {
