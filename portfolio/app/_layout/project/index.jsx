@@ -26,6 +26,16 @@ export function Project() {
     return <ProjectSlider key={id} type={type} source={source} />;
   });
 
+  const thirdSlider = projectOptions.third.map(({ type, source }) => {
+    const id = randomId();
+    return <ProjectSlider key={id} type={type} source={source} />;
+  });
+
+  const fourthSlider = projectOptions.fourth.map(({ type, source }) => {
+    const id = randomId();
+    return <ProjectSlider key={id} type={type} source={source} />;
+  });
+
   return (
     <section ref={containerRef} className='relative z-10 mt-14'>
       <div className='grid items-center'>
@@ -48,6 +58,26 @@ export function Project() {
             }}
           >
             {secondSlider}
+          </motion.div>
+
+          <motion.div
+            className='mb-10 flex gap-10'
+            style={{
+              width: '120vw',
+              x: transformX1,
+            }}
+          >
+            {thirdSlider}
+          </motion.div>
+
+          <motion.div
+            className='mb-10 flex gap-10'
+            style={{
+              width: '120vw',
+              x: transformX2,
+            }}
+          >
+            {fourthSlider}
           </motion.div>
         </div>
 

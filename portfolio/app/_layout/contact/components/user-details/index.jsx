@@ -20,19 +20,13 @@ export function UserDetails({ transformX }) {
         <div className='flex items-center gap-8'>
           <ImageWrapper>
             <Image
-              src='/images/contact-profile.jpg'
+              src='/images/contact-profile.png'
               className='rounded-full object-cover'
               fill={true}
               alt='Gautam Prabhu Profile Picture'
             />
           </ImageWrapper>
-          <MainTitle>Let’s work</MainTitle>
-        </div>
-        <div className='flex items-center justify-between'>
-          <MainTitle>together</MainTitle>
-          <div>
-            <ArrowDownLeft size={28} strokeWidth={1.25} />
-          </div>
+          <MainTitle>Let's connect</MainTitle>
         </div>
       </Row>
 
@@ -52,24 +46,24 @@ export function UserDetails({ transformX }) {
       </Row>
 
       <Row>
-        <div className='flex w-full flex-col gap-4 lg:flex-row'>
-          <div>
+        <div className='flex w-full flex-col gap-6 lg:flex-row lg:items-center lg:gap-16'>
+          <div className='relative'>
             <a href='mailto:gautamprabhumit@gmail.com'>
               <MagneticButton
                 variant='outline'
                 size='md'
-                className='w-full border-muted-foreground'
+                className='border-muted-foreground whitespace-nowrap w-full lg:w-[20pc] flex items-center justify-center'
               >
                 gautamprabhumit@gmail.com
               </MagneticButton>
             </a>
           </div>
-          <div>
+          <div className='relative'>
             <a href='tel:+918073870925'>
               <MagneticButton
                 variant='outline'
                 size='md'
-                className='w-full border-muted-foreground'
+                className='border-muted-foreground px-6 flex items-center justify-center'
               >
                 +91 80738 70925
               </MagneticButton>

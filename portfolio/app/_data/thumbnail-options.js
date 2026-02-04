@@ -1,22 +1,26 @@
 export const thumbnailOptions = [
   {
-    href: '/fabric',
-    title: 'FABRIC™',
-    image: '/images/thumbnails/project-1.jpg',
+    href: '/mit-lor-system',
+    title: 'MIT Letter of Recommendation System',
+    description: 'Project Intern | Full-Stack System',
+    image: '/images/thumbnails/project-1.png',
   },
   {
-    href: '/aanstekelijk',
-    title: 'Aanstekelijk',
-    image: '/images/thumbnails/project-2.jpg',
+    href: '/windscapes-inventory',
+    title: 'WindScapes Inventory Management',
+    description: 'Developer Intern | Backend',
+    image: '/images/thumbnails/project-2.png',
   },
   {
-    href: '/base-create',
-    title: 'Base Create',
-    image: '/images/thumbnails/project-3.jpg',
+    href: '/ai-resume-parser',
+    title: 'AI Resume Parser + Job Search',
+    description: 'NLP Parsing | Text Structuring',
+    image: '/images/thumbnails/project-3.png',
   },
   {
-    href: '/avvr',
-    title: 'AVVR',
-    image: '/images/thumbnails/project-4.jpg',
+    href: '/urbanluxe-real-estate',
+    title: 'UrbanLuxe - Real Estate Web App',
+    description: 'MarketPlace SaaS | Real-time chat',
+    image: '/images/thumbnails/project-4.png',
   },
 ];

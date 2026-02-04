@@ -17,8 +17,8 @@ export function Header() {
       animate='enter'
     >
       <Image
-        src='/images/hero-profile.jpg'
-        className='object-cover md:scale-125 md:object-contain'
+        src='/images/hero-profile.png'
+        className='object-cover'
         fill={true}
         sizes='100vw'
         alt='Gautam Prabhu Personal Picture'
@@ -38,12 +38,12 @@ export function Header() {
         </div>
 
         <div className='md:ml-auto'>
-          <div className='mx-10 max-md:my-12 md:mx-36'>
-            <div className='mb-4 md:mb-20'>
+          <div className='mx-10 max-md:my-12 md:ml-10 md:mr-10 md:-translate-x-[340px]'>
+            <div className='mb-4 md:mb-20 text-gray-900'>
               <MoveDownRight size={28} strokeWidth={1.25} />
             </div>
 
-            <h4 className='text-[clamp(1.55em,2.5vw,2.75em)]'>
+            <h4 className='text-[clamp(1.55em,2.5vw,2.75em)] text-white font-semibold drop-shadow-[0_6px_18px_rgba(0,0,0,0.85)]'>
               <span className='block'>Aspiring Software Developer</span>
               <span className='block'>Full-Stack | Backend | Systems</span>
             </h4>

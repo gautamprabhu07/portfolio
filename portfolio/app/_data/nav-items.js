@@ -4,8 +4,8 @@ export const navItems = [
     title: 'home',
   },
   {
-    href: '/work',
-    title: 'work',
+    href: 'https://drive.google.com/file/d/1nG8AQQzgXTBe1XXLicoPAjkyQkJe5ZH-/view?usp=drivesdk',
+    title: 'resume',
   },
   {
     href: '/about',

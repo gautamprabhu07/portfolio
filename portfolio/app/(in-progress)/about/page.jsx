@@ -1,17 +1,32 @@
-import { InProgress } from '@/components';
-import { Transition } from '@/layout';
+import { Contact, Navbar, Transition } from '@/layout';
+
+import {
+  AboutHero,
+  AboutPersonal,
+  AboutExperience,
+  AboutEducation,
+  AboutFocus,
+} from './_components';
 
 /** @type {import('next').Metadata} */
 export const metadata = {
-  title: 'About',
+  title: 'About | Gautam Prabhu',
   description:
-    'Helping brands thrive in the digital world. Located in The Netherlands. Delivering tailor-made digital designs and building interactive websites from scratch. © Code by Dennis',
+    'Full-stack developer with a strong backend and systems mindset. Engineering software that\'s practical, maintainable, and production-ready.',
 };
 
 export default function About() {
   return (
     <Transition>
-      <InProgress>About Page</InProgress>
+      <Navbar />
+      <main>
+        <AboutHero />
+        <AboutPersonal />
+        <AboutExperience />
+        <AboutEducation />
+        <AboutFocus />
+      </main>
+      <Contact />
     </Transition>
   );
 }

@@ -6,9 +6,8 @@ import { motion } from 'framer-motion';
 
 import { MagneticButton } from '@/components';
 import { useOffcanvasToggle } from '@/hooks';
-import { cn } from '@/utils';
 
-import classes from './index.module.css';
+import { Wrapper, Burger } from './index.styled';
 
 /**
  * @param {Object} props
@@ -24,9 +23,9 @@ export function OffcanvasToggle({ isOpen, handleOpen }) {
   });
 
   return (
-    <motion.div
+    <Wrapper
+      as={motion.div}
       ref={containerRef}
-      className={classes.wrapper}
       initial={false}
       transition={{
         duration: 1,
@@ -40,11 +39,9 @@ export function OffcanvasToggle({ isOpen, handleOpen }) {
         className='border border-solid border-muted-foreground'
         onClick={() => handleOpen(!isOpen)}
       >
-        <span
-          className={cn([classes.burger], [isOpen && classes.burgerActive])}
-        />
+        <Burger $isActive={isOpen} />
         <span className='sr-only focus:not-sr-only'>Offcanvas Toggle</span>
       </MagneticButton>
-    </motion.div>
+    </Wrapper>
   );
 }

@@ -33,11 +33,14 @@
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-icons": "^5.5.0",
     "react-wrap-balancer": "^1.1.0",
     "styled-components": "^6.1.1",
     "tailwind-merge": "^2.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/eslint-parser": "^7.28.6",
     "autoprefixer": "^10.0.1",
     "cssnano": "^6.0.2",
     "eslint": "^8",
