@@ -1,4 +1,5 @@
 'use client';
+// app/_layout/transition/index.jsx
 
 import { useState } from 'react';
 

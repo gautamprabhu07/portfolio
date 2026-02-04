@@ -1,0 +1,10 @@
+{
+  "eslint.workingDirectories": [
+    {
+      "directory": "portfolio",
+      "changeProcessCWD": true
+    }
+  ],
+  "eslint.nodePath": "portfolio/node_modules",
+  "eslint.packageManager": "pnpm"
+}

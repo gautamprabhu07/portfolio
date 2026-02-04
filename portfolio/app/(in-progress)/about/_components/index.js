@@ -1,3 +1,4 @@
+// app/(in-progress)/about/_components/index.js
 export { AboutHero } from './hero';
 export { AboutPersonal } from './personal';
 export { AboutExperience } from './experience';

@@ -1,72 +1,178 @@
 'use client';
+// app/(in-progress)/about/_components/hero/index.jsx
+
+import { useRef } from 'react';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { Globe } from 'lucide-react';
 
-import { ParallaxReveal, MagneticButton } from '@/components';
 
-import { HeroWrapper, HeroTitle } from './hero.styled';
+import { MagneticButton } from '@/components';
 
-const phrase = 'Engineering software that\'s practical, maintainable, and production-ready.';
-const subLine = 'Full-stack developer with a strong backend and systems mindset.';
+import { 
+  BackgroundPattern,
+  CTAWrapper,
+  FloatingOrb,
+  HeroDescription,
+  HeroGrid,
+  HeroSubtitle,
+  HeroTitle,
+  HeroWrapper,
+  ImageColumn,
+  ImageOverlay,
+  ImageWrapper,
+  TextColumn,
+} from './hero.styled';
 
 export function AboutHero() {
+  const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    offset: ['start start', 'end end'],
+    target: containerRef,
+    offset: ['start start', 'end start'],
   });
 
-  const transformX = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section className='bg-background text-foreground'>
+    <motion.section 
+      ref={containerRef}
+      className='bg-background text-foreground'
+      style={{ opacity }}
+    >
       <HeroWrapper className='container'>
-        <div className='basis-full'>
-          <HeroTitle>
-            <ParallaxReveal paragraph={phrase} />
-          </HeroTitle>
-          <motion.p
-            className='text-muted-foreground mt-6 max-w-2xl'
-            style={{ fontSize: 'clamp(0.95rem, 1.1vw, 1.1rem)' }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.75, delay: 0.5 }}
-          >
-            {subLine}
-          </motion.p>
-        </div>
+        <BackgroundPattern />
+        <FloatingOrb 
+          $top="20%" 
+          $left="10%"
+          animate={{
+            y: [0, -20, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+        <FloatingOrb 
+          $top="60%" 
+          $right="15%"
+          animate={{
+            y: [0, 20, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 1,
+          }}
+        />
 
-        <motion.div
-          className='relative w-full mt-16'
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.75, delay: 0.3 }}
-        >
-          <div className='relative w-full'>
-            <div className='h-[1px] bg-muted-foreground' />
-            <div className='absolute right-0 top-0 z-20 -translate-x-1/2 -translate-y-1/2'>
-              <motion.div style={{ x: transformX }}>
+        <HeroGrid>
+          <TextColumn>
+            <motion.div
+              style={{ y: textY }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <motion.div
+                className='flex items-center gap-2 mb-4'
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <motion.div
+                  animate={{ 
+                    rotate: [0, 10, -10, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 3
+                  }}
+                >
+                  <Sparkles size={24} className='text-muted-foreground' />
+                </motion.div>
+                <HeroSubtitle>Software Developer</HeroSubtitle>
+              </motion.div>
+
+              <HeroTitle>
+                Engineering software that is{' '}
+                <span className='italic'>
+                  practical
+                </span>
+                , maintainable, and production-ready
+              </HeroTitle>
+
+              <HeroDescription>
+                I build end-to-end systems with a strong backend and systems mindset.
+                From REST APIs to responsive frontends, I focus on clean architecture,
+                security, and scalability.
+              </HeroDescription>
+
+              <CTAWrapper>
                 <Link href='/contact' passHref>
-                  <MagneticButton variant='primary' size='lg' className='aspect-square !p-6'>
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        duration: 20,
-                        repeat: Infinity,
-                        ease: 'linear',
-                      }}
-                    >
-                      <Globe size={50} strokeWidth={2} />
-                    </motion.div>
+                  <MagneticButton variant='primary' size='lg'>
+                    <span className='flex items-center gap-2'>
+                      Get in touch
+                      <motion.div
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ 
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: 'easeInOut'
+                        }}
+                      >
+                        <ArrowRight size={20} />
+                      </motion.div>
+                    </span>
                   </MagneticButton>
                 </Link>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
+              </CTAWrapper>
+            </motion.div>
+          </TextColumn>
+
+          <ImageColumn>
+            <motion.div
+              style={{ y: imageY }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ImageWrapper
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <Image
+                  src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop'
+                  alt='Gautam Prabhu'
+                  fill
+                  className='object-cover'
+                  priority
+                />
+                <ImageOverlay>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileHover={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className='text-white text-center'
+                  >
+                    <p className='text-lg font-semibold mb-1'>Gautam Prabhu</p>
+                    <p className='text-sm opacity-90'>Full-Stack Developer</p>
+                  </motion.div>
+                </ImageOverlay>
+              </ImageWrapper>
+            </motion.div>
+          </ImageColumn>
+        </HeroGrid>
       </HeroWrapper>
-    </section>
+    </motion.section>
   );
 }

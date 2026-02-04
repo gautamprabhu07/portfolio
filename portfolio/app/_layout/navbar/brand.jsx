@@ -9,7 +9,10 @@ export function NavbarBrand() {
         <Copyright />
       </div>
 
-      <div className='relative ms-2 flex overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-expo group-hover:pe-8'>
+      <div
+        className='relative ms-2 flex overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-expo group-hover:pe-8'
+        style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.7)' }}
+      >
         <h5 className='transition-transform duration-500 ease-in-expo group-hover:-translate-x-full'>
           Code by
         </h5>

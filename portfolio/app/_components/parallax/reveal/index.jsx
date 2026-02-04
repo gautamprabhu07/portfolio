@@ -1,4 +1,5 @@
 'use client';
+// app/_components/parallax/reveal/index.jsx
 
 import { motion } from 'framer-motion';
 

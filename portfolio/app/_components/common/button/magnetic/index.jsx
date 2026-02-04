@@ -1,4 +1,5 @@
 'use client';
+// app/_components/common/button/magnetic/index.jsx
 
 import { useRef } from 'react';
 

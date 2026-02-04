@@ -1,11 +1,12 @@
+// app/(in-progress)/about/page.jsx
 import { Contact, Navbar, Transition } from '@/layout';
 
 import {
+  AboutEducation,
+  AboutExperience,
+  AboutFocus,
   AboutHero,
   AboutPersonal,
-  AboutExperience,
-  AboutEducation,
-  AboutFocus,
 } from './_components';
 
 /** @type {import('next').Metadata} */

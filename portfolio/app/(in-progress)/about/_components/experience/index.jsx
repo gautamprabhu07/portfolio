@@ -1,31 +1,36 @@
 'use client';
+// app/(in-progress)/about/_components/experience/index.jsx
 
 import { motion } from 'framer-motion';
+import { ArrowUpRight, Briefcase } from 'lucide-react';
 import Balancer from 'react-wrap-balancer';
 
 import {
-  ExperienceWrapper,
-  SectionTitle,
-  SectionSubtitle,
-  ExperienceGrid,
-  ExperienceCard,
+  BulletItem,
+  BulletList,
+  CardBody,
+  CardGlow,
   CardHeader,
   CompanyName,
-  RoleTitle,
   DateRange,
-  CardBody,
-  BulletList,
-  BulletItem,
+  ExperienceCard,
+  ExperienceGrid,
+  ExperienceWrapper,
+  IconWrapper,
+  RoleTitle,
+  SectionSubtitle,
+  SectionTitle,
 } from './experience.styled';
 
 const cardVariants = {
-  initial: { opacity: 0, y: 40 },
+  initial: { opacity: 0, y: 60, rotateX: -15 },
   open: (i) => ({
     opacity: 1,
     y: 0,
+    rotateX: 0,
     transition: {
-      duration: 0.6,
-      delay: 0.15 * i,
+      duration: 0.7,
+      delay: 0.2 * i,
       ease: [0.16, 1, 0.3, 1],
     },
   }),
@@ -60,12 +65,23 @@ export function AboutExperience() {
     <section className='bg-background text-foreground'>
       <ExperienceWrapper className='container'>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
         >
-          <SectionTitle>Experience</SectionTitle>
+          <div className='flex items-center gap-3 mb-3'>
+            <motion.div
+              animate={{ 
+                rotate: [0, 10, -10, 0],
+                y: [0, -5, 0],
+              }}
+              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+            >
+              <Briefcase size={36} strokeWidth={2.5} className='text-muted-foreground' />
+            </motion.div>
+            <SectionTitle>Experience</SectionTitle>
+          </div>
           <SectionSubtitle>
             Real-world systems built under practical constraints
           </SectionSubtitle>
@@ -80,13 +96,31 @@ export function AboutExperience() {
               initial='initial'
               whileInView='open'
               viewport={{ once: true }}
+              style={{ perspective: '1000px' }}
             >
-              <ExperienceCard>
+              <ExperienceCard
+                whileHover={{ 
+                  y: -10,
+                  rotateY: 3,
+                  scale: 1.02,
+                }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <CardGlow />
+                <IconWrapper>
+                  <ArrowUpRight size={20} />
+                </IconWrapper>
+                
                 <CardHeader>
                   <div>
                     <CompanyName>{exp.company}</CompanyName>
                     {exp.details && (
-                      <div style={{ fontSize: '0.9rem', opacity: 0.7, marginTop: '0.25rem' }}>
+                      <div style={{ 
+                        fontSize: '0.95rem', 
+                        color: 'rgba(26, 26, 46, 0.6)', 
+                        marginTop: '0.5rem',
+                        fontWeight: 500,
+                      }}>
                         {exp.details}
                       </div>
                     )}
@@ -94,6 +128,7 @@ export function AboutExperience() {
                   </div>
                   <DateRange>{exp.dates}</DateRange>
                 </CardHeader>
+                
                 <CardBody>
                   <BulletList>
                     {exp.bullets.map((bullet, i) => (
