@@ -1,4 +1,5 @@
 'use client';
+// app/_layout/thumbnail/components/cursor/index.jsx
 
 import { forwardRef } from 'react';
 

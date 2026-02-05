@@ -1,3 +1,4 @@
+// app/_layout/thumbnail/variants.js
 /** @type {import('framer-motion').Variants} */
 export const scaleUp = {
   initial: { scale: 0, x: '-50%', y: '-50%' },

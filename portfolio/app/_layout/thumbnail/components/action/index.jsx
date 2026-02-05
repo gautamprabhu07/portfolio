@@ -1,3 +1,4 @@
+// app/_layout/thumbnail/components/action/index.jsx
 import Link from 'next/link';
 
 import { Center, MagneticButton } from '@/components';

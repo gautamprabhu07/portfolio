@@ -1,4 +1,5 @@
 'use client';
+// app/_layout/description/index.styled.js
 
 import { styled } from 'styled-components';
 

@@ -1,3 +1,4 @@
+// app/_data/thumbnail-options.js
 export const thumbnailOptions = [
   {
     href: 'https://mit-lor.onrender.com',

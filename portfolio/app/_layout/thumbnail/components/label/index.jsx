@@ -1,3 +1,4 @@
+// app/_layout/thumbnail/components/label/index.jsx
 /** @param {import('react').PropsWithChildren<unknown>} */
 export function ThumbnailLabel({ children }) {
   return (

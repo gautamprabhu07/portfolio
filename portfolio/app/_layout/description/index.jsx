@@ -1,4 +1,5 @@
 'use client';
+// app/_layout/description/index.jsx
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';

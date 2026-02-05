@@ -1,4 +1,5 @@
 'use client';
+// app/_layout/header/index.jsx
 
 import { motion } from 'framer-motion';
 import { MoveDownRight } from 'lucide-react';

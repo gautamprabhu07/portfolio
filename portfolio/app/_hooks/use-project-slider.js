@@ -1,4 +1,5 @@
 'use client';
+// app/_hooks/use-project-slider.js
 
 import { useScroll, useTransform } from 'framer-motion';
 

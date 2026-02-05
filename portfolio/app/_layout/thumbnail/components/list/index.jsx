@@ -1,4 +1,5 @@
 'use client';
+// app/_layout/thumbnail/components/list/index.jsx
 
 import Link from 'next/link';
 

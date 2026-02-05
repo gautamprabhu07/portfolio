@@ -1,4 +1,5 @@
 'use client';
+// app/_layout/thumbnail/index.jsx
 
 import { useRef } from 'react';
 

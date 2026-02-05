@@ -1,4 +1,5 @@
 'use client';
+// app/_layout/project/slider.jsx
 
 import Image from 'next/image';
 

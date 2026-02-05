@@ -1,4 +1,5 @@
 'use client';
+// app/_layout/thumbnail/components/modal/index.jsx
 
 import { forwardRef } from 'react';
 

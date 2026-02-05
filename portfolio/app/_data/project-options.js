@@ -1,3 +1,4 @@
+// app/_data/project-options.js
 export const projectOptions = {
   first: [
     {

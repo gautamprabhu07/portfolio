@@ -1,3 +1,4 @@
+// app/page.jsx
 import {
   Contact,
   Description,
