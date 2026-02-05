@@ -13,13 +13,20 @@ import { fade, slideUp } from './variants';
 
 const MotionComponent = motion(Center);
 
-export function Preloader() {
+/**
+ * @param {Object} props
+ * @param {boolean} props.isFirstLoad
+ * @param {string} props.pageName
+ */
+export function Preloader({ isFirstLoad, pageName }) {
   const [index, setIndex] = useState(0);
   const { width, height } = useDimensions();
 
   useTimeOut({
     callback: () => {
-      setIndex(prevIndex => prevIndex + 1);
+      if (isFirstLoad) {
+        setIndex(prevIndex => prevIndex + 1);
+      }
     },
     duration: index === 0 ? 500 : 250,
     deps: [index],
@@ -44,6 +51,8 @@ export function Preloader() {
     },
   };
 
+  const displayText = isFirstLoad ? preloaderWords[index] : pageName;
+
   return (
     <MotionComponent
       className='fixed z-50 h-screen w-screen cursor-wait bg-foreground'
@@ -60,7 +69,7 @@ export function Preloader() {
             animate='enter'
           >
             <Dot size={48} className='me-3' />
-            <p>{preloaderWords[index]}</p>
+            <p>{displayText}</p>
           </MotionComponent>
           <motion.svg className='absolute top-0 -z-10 h-[calc(100%+300px)] w-full'>
             <motion.path
