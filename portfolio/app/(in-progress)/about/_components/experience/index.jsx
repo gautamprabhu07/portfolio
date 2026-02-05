@@ -2,14 +2,12 @@
 // app/(in-progress)/about/_components/experience/index.jsx
 
 import { motion } from 'framer-motion';
-import { Briefcase } from 'lucide-react';
 import Balancer from 'react-wrap-balancer';
 
 import {
   BulletItem,
   BulletList,
   CardBody,
-  CardGlow,
   CardHeader,
   CompanyName,
   DateRange,
@@ -22,15 +20,14 @@ import {
 } from './experience.styled';
 
 const cardVariants = {
-  initial: { opacity: 0, y: 60, rotateX: -15 },
+  initial: { opacity: 0, y: 50 },
   open: (i) => ({
     opacity: 1,
     y: 0,
-    rotateX: 0,
     transition: {
       duration: 0.7,
-      delay: 0.2 * i,
-      ease: [0.16, 1, 0.3, 1],
+      delay: 0.15 * i,
+      ease: [0.33, 1, 0.68, 1],
     },
   }),
 };
@@ -69,18 +66,7 @@ export function AboutExperience() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <div className='flex items-center gap-3 mb-3'>
-            <motion.div
-              animate={{ 
-                rotate: [0, 10, -10, 0],
-                y: [0, -5, 0],
-              }}
-              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
-            >
-              <Briefcase size={36} strokeWidth={2.5} className='text-muted-foreground' />
-            </motion.div>
-            <SectionTitle>Experience</SectionTitle>
-          </div>
+          <SectionTitle>Experience</SectionTitle>
           <SectionSubtitle>
             Real-world systems built under practical constraints
           </SectionSubtitle>
@@ -95,25 +81,24 @@ export function AboutExperience() {
               initial='initial'
               whileInView='open'
               viewport={{ once: true }}
-              style={{ perspective: '1000px' }}
             >
               <ExperienceCard
                 whileHover={{ 
-                  y: -10,
-                  rotateY: 3,
-                  scale: 1.02,
+                  y: -8,
+                  scale: 1.01,
                 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ 
+                  duration: 0.3, 
+                  ease: [0.33, 1, 0.68, 1] 
+                }}
               >
-                <CardGlow />
-                
                 <CardHeader>
                   <div>
                     <CompanyName>{exp.company}</CompanyName>
                     {exp.details && (
                       <div style={{ 
-                        fontSize: '0.95rem', 
-                        color: 'hsl(240 3.8% 46.1%)', 
+                        fontSize: 'clamp(0.95rem, 1vw, 1.05rem)', 
+                        color: 'hsl(var(--muted-foreground))', 
                         marginTop: '0.5rem',
                         fontWeight: 500,
                       }}>

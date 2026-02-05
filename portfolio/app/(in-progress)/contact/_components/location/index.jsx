@@ -1,21 +1,60 @@
 'use client';
 // app/(in-progress)/contact/_components/location/index.jsx
 import { motion } from 'framer-motion';
-import { Clock, MapPin } from 'lucide-react';
+import { Clock, MapPin, Wifi } from 'lucide-react';
 
 
 import {
-  InfoCard,
+  
+    InfoCard,
   InfoGrid,
+  InfoIcon,
   InfoLabel,
   InfoValue,
-  LocationIcon,
-  LocationInfo,
   LocationSubtext,
   LocationTitle,
   LocationWrapper,
   
+
+  SectionTitle,
 } from './location.styled';
+
+const cardVariants = {
+  initial: { opacity: 0, y: 40 },
+  open: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      delay: 0.15 * i,
+      ease: [0.33, 1, 0.68, 1],
+    },
+  }),
+};
+
+const reveal = {
+  initial: { y: '100%' },
+  open: {
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.33, 1, 0.68, 1],
+    },
+  },
+};
+
+const infoItems = [
+  {
+    icon: Clock,
+    label: 'Availability',
+    value: 'Immediate',
+  },
+  {
+    icon: Wifi,
+    label: 'Work Mode',
+    value: 'Remote / Hybrid / On-site',
+  },
+];
 
 export function ContactLocation() {
   return (
@@ -24,46 +63,47 @@ export function ContactLocation() {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
       >
-        <LocationIcon
-          initial={{ scale: 0.8, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <MapPin size={32} strokeWidth={2.5} />
-        </LocationIcon>
-        
-        <LocationTitle>Based in Manipal, Karnataka, India</LocationTitle>
-        <LocationSubtext>Open to remote, hybrid, and on-site opportunities</LocationSubtext>
-        
+        <div style={{ overflow: 'hidden', marginBottom: '3rem' }}>
+          <motion.div variants={reveal} initial='initial' whileInView='open' viewport={{ once: true }}>
+            <SectionTitle>Location & Availability</SectionTitle>
+          </motion.div>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', marginBottom: '3rem' }}>
+          <MapPin size={32} strokeWidth={1.5} className='text-primary' style={{ flexShrink: 0, marginTop: '0.25rem' }} />
+          <div>
+            <LocationTitle>Based in Manipal, Karnataka, India</LocationTitle>
+            <LocationSubtext>Open to opportunities across India and remote positions globally</LocationSubtext>
+          </div>
+        </div>
+
         <InfoGrid>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <InfoCard>
-              <Clock size={20} className='text-primary' />
-              <InfoLabel>Availability</InfoLabel>
-              <InfoValue>Immediate start</InfoValue>
-            </InfoCard>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <InfoCard>
-              <MapPin size={20} className='text-primary' />
-              <InfoLabel>Work Preference</InfoLabel>
-              <InfoValue>Flexible</InfoValue>
-            </InfoCard>
-          </motion.div>
+          {infoItems.map((item, index) => {
+            const IconComponent = item.icon;
+            return (
+              <motion.div
+                key={item.label}
+                custom={index}
+                variants={cardVariants}
+                initial='initial'
+                whileInView='open'
+                viewport={{ once: true }}
+              >
+                <InfoCard
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.3, ease: [0.33, 1, 0.68, 1] }}
+                >
+                  <InfoIcon>
+                    <IconComponent size={24} strokeWidth={1.5} />
+                  </InfoIcon>
+                  <InfoLabel>{item.label}</InfoLabel>
+                  <InfoValue>{item.value}</InfoValue>
+                </InfoCard>
+              </motion.div>
+            );
+          })}
         </InfoGrid>
       </motion.div>
     </LocationWrapper>
