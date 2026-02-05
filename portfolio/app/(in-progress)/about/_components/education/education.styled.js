@@ -7,7 +7,7 @@ import { styled } from 'styled-components';
 export const EducationWrapper = styled.div`
   padding-block: clamp(6em, 13vh, 16em);
   padding-inline: clamp(2.5em, 4vw, 8em);
-  background: linear-gradient(180deg, #F3F4F8 0%, #EDE9FF 100%);
+  background: hsl(210 5% 95.9%);
   position: relative;
 `;
 
@@ -15,19 +15,19 @@ export const IconBadge = styled.div`
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #7877C6, #5856D6);
+  background: linear-gradient(135deg, hsl(232 79% 59%), hsl(232 79% 52%));
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: 0 10px 30px rgba(120, 119, 198, 0.3);
+  box-shadow: 0 10px 30px hsl(232 79% 59% / 0.25);
 `;
 
 export const SectionTitle = styled.h2`
   font-size: clamp(2.5rem, 4vw, 4rem);
   font-weight: 800;
   margin-bottom: 4rem;
-  color: #1a1a2e;
+  color: hsl(225 7% 12%);
   font-family: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   @media screen and (min-width: 1024px) {
@@ -49,9 +49,8 @@ export const TimelineConnector = styled(motion.div)`
   width: 3px;
   background: linear-gradient(
     180deg,
-    #7877C6,
-    #5856D6,
-    rgba(120, 119, 198, 0.3)
+    hsl(232 79% 59%),
+    hsl(232 79% 59% / 0.3)
   );
   transform-origin: top;
   border-radius: 10px;
@@ -88,11 +87,11 @@ export const TimelineDot = styled(motion.div)`
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: ${props => props.$color || '#7877C6'};
+  background: hsl(232 79% 59%);
   position: relative;
   z-index: 2;
-  border: 3px solid white;
-  box-shadow: 0 4px 12px ${props => props.$color ? `${props.$color}60` : 'rgba(120, 119, 198, 0.6)'};
+  border: 3px solid hsl(0 0% 100%);
+  box-shadow: 0 4px 12px hsl(232 79% 59% / 0.4);
 
   @media screen and (min-width: 768px) {
     width: 20px;
@@ -104,12 +103,11 @@ export const TimelineDot = styled(motion.div)`
 export const TimelineContent = styled(motion.div)`
   padding: 2rem 2.5rem;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid ${props => props.$color ? `${props.$color}40` : 'rgba(120, 119, 198, 0.4)'};
+  background: hsl(0 0% 100%);
+  border: 2px solid hsl(192 3% 90%);
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  backdrop-filter: blur(10px);
 
   &::before {
     content: '';
@@ -118,15 +116,15 @@ export const TimelineContent = styled(motion.div)`
     left: 0;
     width: 0;
     height: 100%;
-    background: ${props => props.$color ? `${props.$color}10` : 'rgba(120, 119, 198, 0.1)'};
+    background: hsl(232 79% 59% / 0.05);
     transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   &:hover {
-    border-color: ${props => props.$color || '#7877C6'};
+    border-color: hsl(232 79% 59% / 0.3);
     box-shadow: 
-      0 15px 40px rgba(120, 119, 198, 0.2),
-      0 5px 20px ${props => props.$color ? `${props.$color}30` : 'rgba(120, 119, 198, 0.3)'};
+      0 15px 40px hsl(225 7% 12% / 0.08),
+      0 5px 20px hsl(232 79% 59% / 0.12);
 
     &::before {
       width: 100%;
@@ -141,7 +139,7 @@ export const TimelineContent = styled(motion.div)`
 export const InstitutionName = styled.h3`
   font-size: clamp(1.25rem, 1.5vw, 1.6rem);
   font-weight: 800;
-  color: #1a1a2e;
+  color: hsl(225 7% 12%);
   margin-bottom: 0.75rem;
   font-family: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   position: relative;
@@ -150,7 +148,7 @@ export const InstitutionName = styled.h3`
 
 export const DegreeTitle = styled.div`
   font-size: clamp(1rem, 1.1vw, 1.15rem);
-  color: rgba(26, 26, 46, 0.75);
+  color: hsl(240 3.8% 46.1%);
   font-weight: 600;
   margin-bottom: 1rem;
   position: relative;
@@ -159,15 +157,15 @@ export const DegreeTitle = styled.div`
 
 export const DateRange = styled.div`
   font-size: clamp(0.85rem, 0.95vw, 0.95rem);
-  color: rgba(26, 26, 46, 0.6);
+  color: hsl(240 3.8% 46.1%);
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: rgba(120, 119, 198, 0.1);
+  background: hsl(210 5% 95.9%);
   border-radius: 50px;
-  border: 1px solid rgba(120, 119, 198, 0.2);
+  border: 1px solid hsl(192 3% 90%);
   position: relative;
   z-index: 1;
 `;
@@ -175,7 +173,7 @@ export const DateRange = styled.div`
 export const BulletText = styled.p`
   font-size: clamp(0.95rem, 1vw, 1.05rem);
   line-height: 1.7;
-  color: rgba(26, 26, 46, 0.7);
+  color: hsl(240 3.8% 46.1%);
   margin-top: 1.25rem;
   position: relative;
   z-index: 1;

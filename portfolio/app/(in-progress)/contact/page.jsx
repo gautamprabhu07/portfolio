@@ -1,17 +1,27 @@
-import { InProgress } from '@/components';
 import { Transition } from '@/layout';
+import {
+  ContactContext,
+  ContactHero,
+  ContactLocation,
+  ContactMethods,
+  ContactResume,
+} from './_components';
 
 /** @type {import('next').Metadata} */
 export const metadata = {
-  title: 'Contact',
+  title: 'Contact - Gautam Prabhu',
   description:
-    'Helping brands thrive in the digital world. Located in The Netherlands. Delivering tailor-made digital designs and building interactive websites from scratch. © Code by Dennis',
+    'Get in touch with Gautam Prabhu. Available for full-stack development internships and open-source collaborations. Based in Manipal, Karnataka, India.',
 };
 
 export default function Contact() {
   return (
     <Transition>
-      <InProgress>Contact Page</InProgress>
+      <ContactHero />
+      <ContactMethods />
+      <ContactContext />
+      <ContactResume />
+      <ContactLocation />
     </Transition>
   );
 }

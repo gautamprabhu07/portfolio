@@ -8,7 +8,6 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-
 import { MagneticButton } from '@/components';
 
 import { 
@@ -105,9 +104,14 @@ export function AboutHero() {
 
               <HeroTitle>
                 Engineering software that is{' '}
-                <span className='italic'>
+                <motion.span 
+                  className='italic'
+                  style={{
+                    color: 'hsl(232 79% 59%)',
+                  }}
+                >
                   practical
-                </span>
+                </motion.span>
                 , maintainable, and production-ready
               </HeroTitle>
 
@@ -151,7 +155,7 @@ export function AboutHero() {
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
                 <Image
-                  src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop'
+                  src='/images/about-1.png'
                   alt='Gautam Prabhu'
                   fill
                   className='object-cover'

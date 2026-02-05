@@ -109,7 +109,7 @@ export function AboutPersonal() {
                       whileHover={{ y: -5, scale: 1.05 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className='text-3xl font-bold text-foreground mb-1'>
+                      <div className='text-3xl font-bold mb-1' style={{ color: 'hsl(232 79% 59%)' }}>
                         {stat.value}
                       </div>
                       <div className='text-sm text-muted-foreground'>
@@ -145,7 +145,10 @@ export function AboutPersonal() {
                   className='object-cover'
                 />
                 <motion.div 
-                  className='absolute inset-0 bg-gradient-to-br from-[#7877C6]/20 via-transparent to-[#5856D6]/20'
+                  className='absolute inset-0 bg-gradient-to-br'
+                  style={{
+                    backgroundImage: 'linear-gradient(135deg, hsl(232 79% 59% / 0.08) 0%, transparent 50%, hsl(192 3% 90% / 0.1) 100%)',
+                  }}
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.4 }}

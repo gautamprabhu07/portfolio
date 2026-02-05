@@ -2,7 +2,7 @@
 // app/(in-progress)/about/_components/experience/index.jsx
 
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Briefcase } from 'lucide-react';
+import { Briefcase } from 'lucide-react';
 import Balancer from 'react-wrap-balancer';
 
 import {
@@ -16,7 +16,6 @@ import {
   ExperienceCard,
   ExperienceGrid,
   ExperienceWrapper,
-  IconWrapper,
   RoleTitle,
   SectionSubtitle,
   SectionTitle,
@@ -107,9 +106,6 @@ export function AboutExperience() {
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
                 <CardGlow />
-                <IconWrapper>
-                  <ArrowUpRight size={20} />
-                </IconWrapper>
                 
                 <CardHeader>
                   <div>
@@ -117,7 +113,7 @@ export function AboutExperience() {
                     {exp.details && (
                       <div style={{ 
                         fontSize: '0.95rem', 
-                        color: 'rgba(26, 26, 46, 0.6)', 
+                        color: 'hsl(240 3.8% 46.1%)', 
                         marginTop: '0.5rem',
                         fontWeight: 500,
                       }}>

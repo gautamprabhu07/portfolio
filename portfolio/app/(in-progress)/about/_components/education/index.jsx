@@ -5,7 +5,6 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Calendar, GraduationCap, MapPin } from 'lucide-react';
 
-
 import {
   BulletText,
   DateRange,
@@ -33,17 +32,6 @@ const cardVariants = {
       ease: [0.16, 1, 0.3, 1],
     },
   }),
-};
-
-const lineVariants = {
-  initial: { scaleY: 0 },
-  animate: {
-    scaleY: 1,
-    transition: {
-      duration: 1.5,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
 };
 
 const education = [

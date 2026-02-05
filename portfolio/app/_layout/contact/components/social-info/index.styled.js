@@ -1,4 +1,5 @@
 'use client';
+// app/_layout/contact/components/social-info/index.styled.js
 
 import { styled } from 'styled-components';
 

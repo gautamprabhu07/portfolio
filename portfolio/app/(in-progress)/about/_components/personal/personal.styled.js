@@ -8,7 +8,7 @@ export const PersonalWrapper = styled.div`
   padding-block: clamp(8em, 15vh, 18em);
   padding-inline: clamp(2.5em, 4vw, 8em);
   position: relative;
-  background: linear-gradient(180deg, #F5F2E9 0%, #EAF2FF 100%);
+  background: hsl(210 5% 95.9%);
   overflow: hidden;
 `;
 
@@ -19,7 +19,7 @@ export const FloatingShape = styled(motion.div)`
   right: ${props => props.$right || 'auto'};
   width: 80px;
   height: 80px;
-  background: rgba(230, 250, 247, 0.5);
+  background: hsl(232 79% 59% / 0.05);
   border-radius: 20px;
   pointer-events: none;
   z-index: 0;
@@ -54,12 +54,12 @@ export const SectionLabel = styled(motion.div)`
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #5856D6;
+  color: hsl(232 79% 59%);
   margin-bottom: 2rem;
   padding: 0.5rem 1.25rem;
-  background: rgba(88, 86, 214, 0.1);
+  background: hsl(232 79% 59% / 0.08);
   border-radius: 50px;
-  border: 2px solid rgba(88, 86, 214, 0.2);
+  border: 2px solid hsl(192 3% 90%);
 `;
 
 export const ImageFrame = styled(motion.div)`
@@ -69,9 +69,10 @@ export const ImageFrame = styled(motion.div)`
   border-radius: 30px;
   overflow: hidden;
   box-shadow: 
-    0 25px 70px rgba(120, 119, 198, 0.25),
-    0 15px 40px rgba(88, 86, 214, 0.2);
-  border: 4px solid rgba(255, 255, 255, 0.9);
+    0 25px 70px hsl(225 7% 12% / 0.12),
+    0 15px 40px hsl(232 79% 59% / 0.08);
+  border: 4px solid hsl(0 0% 100%);
+  background: hsl(210 5% 95.9%);
 
   &::after {
     content: '';
@@ -81,26 +82,31 @@ export const ImageFrame = styled(motion.div)`
     padding: 2px;
     background: linear-gradient(
       135deg,
-      rgba(120, 119, 198, 0.4),
-      rgba(88, 86, 214, 0.4),
-      rgba(230, 250, 247, 0.4)
+      hsl(232 79% 59% / 0.2),
+      hsl(192 3% 90% / 0.3)
     );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
   }
 `;
 
 export const BodyText = styled.p`
   font-size: clamp(1.05rem, 1.25vw, 1.35rem);
   line-height: 1.8;
-  color: rgba(26, 26, 46, 0.85);
+  color: hsl(240 3.8% 46.1%);
 `;
 
 export const HighlightText = styled.span`
   font-weight: 700;
-  color: #5856D6;
+  color: hsl(225 7% 12%);
   position: relative;
   display: inline-block;
 
@@ -111,11 +117,7 @@ export const HighlightText = styled.span`
     left: 0;
     width: 100%;
     height: 3px;
-    background: linear-gradient(
-      90deg,
-      rgba(120, 119, 198, 0.5),
-      rgba(88, 86, 214, 0.5)
-    );
+    background: hsl(232 79% 59%);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -136,15 +138,14 @@ export const StatsGrid = styled.div`
 export const StatCard = styled(motion.div)`
   padding: 1.5rem;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.6);
-  border: 2px solid rgba(120, 119, 198, 0.2);
+  background: hsl(0 0% 100%);
+  border: 2px solid hsl(192 3% 90%);
   text-align: center;
-  backdrop-filter: blur(10px);
   cursor: pointer;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.8);
-    border-color: rgba(88, 86, 214, 0.4);
-    box-shadow: 0 10px 30px rgba(120, 119, 198, 0.2);
+    background: hsl(0 0% 100%);
+    border-color: hsl(232 79% 59% / 0.3);
+    box-shadow: 0 10px 30px hsl(232 79% 59% / 0.12);
   }
 `;

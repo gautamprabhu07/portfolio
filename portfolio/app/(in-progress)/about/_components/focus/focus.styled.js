@@ -9,16 +9,15 @@ export const FocusWrapper = styled.div`
   padding-inline: clamp(2.5em, 4vw, 8em);
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: hsl(225 7% 12%);
 `;
 
 export const BackgroundGradient = styled.div`
   position: absolute;
   inset: 0;
   background: 
-    radial-gradient(circle at 20% 30%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(88, 86, 214, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(230, 250, 247, 0.05) 0%, transparent 60%);
+    radial-gradient(circle at 20% 30%, hsl(232 79% 59% / 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, hsl(232 79% 59% / 0.05) 0%, transparent 50%);
   pointer-events: none;
   animation: pulse 10s ease-in-out infinite;
 
@@ -35,7 +34,7 @@ export const FocusHeading = styled.h2`
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  color: white;
+  color: hsl(0 0% 100%);
   font-family: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   position: relative;
   z-index: 1;
@@ -48,7 +47,7 @@ export const FocusHeading = styled.h2`
 export const AnimatedDots = styled.span`
   display: inline-flex;
   margin-left: 0.25rem;
-  color: #7877C6;
+  color: hsl(232 79% 59%);
 `;
 
 export const CardsGrid = styled.div`
@@ -71,11 +70,11 @@ export const CardsGrid = styled.div`
 export const FocusCard = styled(motion.div)`
   padding: 3rem 2.5rem;
   border-radius: 24px;
-  border: 2px solid ${props => props.$color === '#E6FAF7' ? 'rgba(230, 250, 247, 0.3)' : 'rgba(120, 119, 198, 0.3)'};
+  border: 2px solid hsl(0 0% 100% / 0.1);
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.03) 100%
+    hsl(0 0% 100% / 0.05) 0%,
+    hsl(0 0% 100% / 0.02) 100%
   );
   backdrop-filter: blur(20px);
   position: relative;
@@ -91,8 +90,8 @@ export const FocusCard = styled(motion.div)`
     padding: 2px;
     background: linear-gradient(
       135deg,
-      ${props => props.$color || '#7877C6'},
-      ${props => props.$color ? `${props.$color}60` : 'rgba(120, 119, 198, 0.6)'},
+      hsl(232 79% 59% / 0.3),
+      hsl(232 79% 59% / 0.1),
       transparent
     );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -111,7 +110,7 @@ export const FocusCard = styled(motion.div)`
     height: 200%;
     background: radial-gradient(
       circle,
-      ${props => props.$color ? `${props.$color}20` : 'rgba(120, 119, 198, 0.2)'} 0%,
+      hsl(232 79% 59% / 0.1) 0%,
       transparent 60%
     );
     opacity: 0;
@@ -120,15 +119,15 @@ export const FocusCard = styled(motion.div)`
   }
 
   &:hover {
-    border-color: ${props => props.$color || '#7877C6'};
+    border-color: hsl(232 79% 59% / 0.3);
     background: linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.12) 0%,
-      rgba(255, 255, 255, 0.06) 100%
+      hsl(0 0% 100% / 0.08) 0%,
+      hsl(0 0% 100% / 0.04) 100%
     );
     box-shadow: 
-      0 20px 60px ${props => props.$color ? `${props.$color}40` : 'rgba(120, 119, 198, 0.4)'},
-      0 10px 30px rgba(0, 0, 0, 0.3);
+      0 20px 60px hsl(232 79% 59% / 0.2),
+      0 10px 30px hsl(0 0% 0% / 0.3);
 
     &::before {
       opacity: 1;
@@ -148,21 +147,21 @@ export const CardIcon = styled.div`
   width: 72px;
   height: 72px;
   border-radius: 18px;
-  background: ${props => props.$color ? `${props.$color}20` : 'rgba(120, 119, 198, 0.2)'};
-  border: 2px solid ${props => props.$color ? `${props.$color}40` : 'rgba(120, 119, 198, 0.4)'};
+  background: hsl(232 79% 59% / 0.1);
+  border: 2px solid hsl(232 79% 59% / 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${props => props.$color || '#7877C6'};
+  color: hsl(232 79% 59%);
   margin-bottom: 1.5rem;
   transition: all 0.4s ease;
 
   ${FocusCard}:hover & {
-    background: ${props => props.$color || '#7877C6'};
-    border-color: ${props => props.$color || '#7877C6'};
-    color: white;
+    background: hsl(232 79% 59%);
+    border-color: hsl(232 79% 59%);
+    color: hsl(0 0% 100%);
     transform: translateZ(20px) scale(1.1);
-    box-shadow: 0 10px 30px ${props => props.$color ? `${props.$color}60` : 'rgba(120, 119, 198, 0.6)'};
+    box-shadow: 0 10px 30px hsl(232 79% 59% / 0.4);
   }
 `;
 
@@ -170,7 +169,7 @@ export const CardTitle = styled.h3`
   font-size: clamp(1.35rem, 1.6vw, 1.7rem);
   font-weight: 700;
   margin-bottom: 1.25rem;
-  color: white;
+  color: hsl(0 0% 100%);
   font-family: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   transition: transform 0.3s ease;
 
@@ -182,11 +181,11 @@ export const CardTitle = styled.h3`
 export const CardDescription = styled.p`
   font-size: clamp(1rem, 1.05vw, 1.1rem);
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.75);
+  color: hsl(0 0% 100% / 0.7);
   transition: all 0.3s ease;
 
   ${FocusCard}:hover & {
-    color: rgba(255, 255, 255, 0.9);
+    color: hsl(0 0% 100% / 0.9);
     transform: translateZ(5px);
   }
 `;

@@ -1,4 +1,5 @@
 'use client';
+// app/_layout/contact/components/user-details/index.jsx
 
 import { motion } from 'framer-motion';
 import { ArrowDownLeft } from 'lucide-react';

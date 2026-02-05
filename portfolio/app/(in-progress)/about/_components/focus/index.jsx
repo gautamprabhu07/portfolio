@@ -92,7 +92,7 @@ export function AboutFocus() {
                 repeatDelay: 3
               }}
             >
-              <Target size={40} strokeWidth={2.5} className='text-muted-foreground' />
+              <Target size={40} strokeWidth={2.5} style={{ color: 'hsl(232 79% 59%)' }} />
             </motion.div>
             <FocusHeading>
               What I Focus On
@@ -159,8 +159,9 @@ export function AboutFocus() {
                   </CardDescription>
 
                   <motion.div
-                    className='absolute bottom-0 left-0 right-0 h-1 rounded-full bg-border'
+                    className='absolute bottom-0 left-0 right-0 h-1 rounded-full'
                     style={{ 
+                      background: 'hsl(232 79% 59%)',
                       transformOrigin: 'left',
                     }}
                     initial={{ scaleX: 0 }}
