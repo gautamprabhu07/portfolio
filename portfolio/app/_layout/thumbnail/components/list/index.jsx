@@ -37,6 +37,8 @@ export function ThumbnailList({
         <Link
           href={href}
           className='flex items-center justify-between max-lg:flex-wrap'
+          target='_blank'
+          rel='noopener noreferrer'
           passHref
         >
           <h4

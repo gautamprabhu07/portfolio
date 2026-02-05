@@ -43,7 +43,7 @@ export function Header() {
               <MoveDownRight size={28} strokeWidth={1.25} />
             </div>
 
-            <h4 className='text-[clamp(1.55em,2.5vw,2.75em)] text-white font-semibold drop-shadow-[0_6px_18px_rgba(0,0,0,0.85)]'>
+            <h4 className='text-[clamp(1.55em,2.5vw,2.75em)] text-white font-semibold drop-shadow-[0_8px_24px_rgba(0,0,0,0.95)]'>
               <span className='block'>Aspiring Software Developer</span>
               <span className='block'>Full-Stack | Backend | Systems</span>
             </h4>
