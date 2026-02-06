@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { MagneticButton } from '@/components';
 import { useOffcanvasToggle } from '@/hooks';
 
-import { Wrapper, Burger } from './index.styled';
+import { Burger, Wrapper } from './index.styled';
 
 /**
  * @param {Object} props

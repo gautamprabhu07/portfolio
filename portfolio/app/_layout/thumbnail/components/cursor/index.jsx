@@ -37,7 +37,7 @@ export const ThumbnailCursorLabel = forwardRef(
     return (
       <MotionComponent
         ref={ref}
-        className='text-background font-medium'
+        className='font-medium text-background'
         variants={variants}
         initial='initial'
         animate={active ? 'enter' : 'closed'}

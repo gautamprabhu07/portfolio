@@ -30,7 +30,7 @@ export function ProjectSlider({ type, source }) {
         muted
         autoPlay
         playsInline
-        className='absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105'
+        className='absolute inset-0 size-full object-cover transition-transform duration-500 hover:scale-105'
       />
     ) : null;
 
