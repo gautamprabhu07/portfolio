@@ -1,10 +1,10 @@
 'use client';
 // app/_layout/contact/components/user-details/index.jsx
 
-import Image from 'next/image';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowDownLeft } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import { MagneticButton } from '@/components';
 

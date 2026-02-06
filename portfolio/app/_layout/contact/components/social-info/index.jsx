@@ -12,7 +12,7 @@ export function SocialInfo() {
   ];
 
   return (
-    <div className='px-12 pb-4 pt-10 flex justify-end'>
+    <div className='flex justify-end px-12 pb-4 pt-10'>
       <div className='flex flex-col gap-4'>
         <h3 className='text-sm uppercase tracking-wider text-muted-foreground'>Socials</h3>
         <div className='flex items-center gap-6'>
