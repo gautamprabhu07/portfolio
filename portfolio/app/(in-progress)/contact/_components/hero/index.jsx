@@ -48,7 +48,7 @@ export function ContactHero() {
         <li className='group'>
           <Link href='/' passHref>
             <MagneticButton>
-              <span className='text-base capitalize font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'>home</span>
+              <span className='text-base font-bold capitalize drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'>home</span>
               <Center>
                 <Dot className='scale-0 transition-transform duration-200 ease-in-expo group-hover:scale-100' />
               </Center>
@@ -58,7 +58,7 @@ export function ContactHero() {
         <li className='group'>
           <Link href='/about' passHref>
             <MagneticButton>
-              <span className='text-base capitalize font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'>about</span>
+              <span className='text-base font-bold capitalize drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'>about</span>
               <Center>
                 <Dot className='scale-0 transition-transform duration-200 ease-in-expo group-hover:scale-100' />
               </Center>
@@ -68,7 +68,7 @@ export function ContactHero() {
         <li className='group'>
           <Link href='https://drive.google.com/file/d/1nG8AQQzgXTBe1XXLicoPAjkyQkJe5ZH-/view?usp=drivesdk' target='_blank' rel='noopener noreferrer' passHref>
             <MagneticButton>
-              <span className='text-base capitalize font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'>resume</span>
+              <span className='text-base font-bold capitalize drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'>resume</span>
               <Center>
                 <Dot className='scale-0 transition-transform duration-200 ease-in-expo group-hover:scale-100' />
               </Center>

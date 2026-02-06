@@ -56,7 +56,7 @@ export function AboutHero() {
               }}
             >
               <motion.div
-                className='flex items-center gap-3 mb-6'
+                className='mb-6 flex items-center gap-3'
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}

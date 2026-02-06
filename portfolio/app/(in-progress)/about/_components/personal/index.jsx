@@ -87,7 +87,7 @@ export function AboutPersonal() {
               <motion.div custom={3} variants={reveal}>
                 <BodyText className='mt-6'>
                   <Balancer>
-                    Whether it's building an ERP platform, designing a recommendation system,
+                    Whether it&apos;s building an ERP platform, designing a recommendation system,
                     or deploying on university servers under tight deadlines, I take ownership
                     of the entire lifecycle.
                   </Balancer>
@@ -105,10 +105,10 @@ export function AboutPersonal() {
                         ease: [0.33, 1, 0.68, 1] 
                       }}
                     >
-                      <div className='text-3xl font-bold mb-1' style={{ color: 'hsl(232 79% 59%)' }}>
+                      <div className='mb-1 text-3xl font-bold' style={{ color: 'hsl(232 79% 59%)' }}>
                         {stat.value}
                       </div>
-                      <div className='text-sm text-muted-foreground font-medium'>
+                      <div className='text-sm font-medium text-muted-foreground'>
                         {stat.label}
                       </div>
                     </StatCard>
@@ -117,7 +117,7 @@ export function AboutPersonal() {
               </motion.div>
 
               <motion.div custom={5} variants={reveal}>
-                <BodyText className='mt-8 font-semibold text-muted-foreground italic'>
+                <BodyText className='mt-8 font-semibold italic text-muted-foreground'>
                   Always learning. Always building.
                 </BodyText>
               </motion.div>
