@@ -1,10 +1,10 @@
 'use client';
 // app/_layout/contact/components/user-details/index.jsx
 
+import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowDownLeft } from 'lucide-react';
-import Link from 'next/link';
-import Image from 'next/image';
 
 import { MagneticButton } from '@/components';
 
@@ -27,13 +27,13 @@ export function UserDetails({ transformX }) {
               alt='Gautam Prabhu Profile Picture'
             />
           </ImageWrapper>
-          <MainTitle>Let's connect</MainTitle>
+          <MainTitle>Let&apos;s connect</MainTitle>
         </div>
       </Row>
 
       <Row>
         <div className='relative w-full'>
-          <div className='h-[1px] bg-muted-foreground' />
+          <div className='h-px bg-muted-foreground' />
           <div className='absolute right-0 top-0 z-20 -translate-x-1/2 -translate-y-1/2'>
             <motion.div style={{ x: transformX }}>
               <Link href='/contact' passHref>
@@ -53,7 +53,7 @@ export function UserDetails({ transformX }) {
               <MagneticButton
                 variant='outline'
                 size='md'
-                className='border-muted-foreground whitespace-nowrap w-full lg:w-[20pc] flex items-center justify-center'
+                className='flex w-full items-center justify-center whitespace-nowrap border-muted-foreground lg:w-[20pc]'
               >
                 gautamprabhumit@gmail.com
               </MagneticButton>
@@ -64,7 +64,7 @@ export function UserDetails({ transformX }) {
               <MagneticButton
                 variant='outline'
                 size='md'
-                className='border-muted-foreground px-6 flex items-center justify-center'
+                className='flex items-center justify-center border-muted-foreground px-6'
               >
                 +91 80738 70925
               </MagneticButton>

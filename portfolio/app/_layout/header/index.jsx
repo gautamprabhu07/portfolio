@@ -112,7 +112,7 @@ export function Header() {
 
         {/* Subtitle Section */}
         <div className='md:ml-auto'>
-          <div className='mx-10 max-md:my-12 md:ml-10 md:mr-10 md:-translate-x-[340px]'>
+          <div className='mx-10 max-md:my-12 md:mx-10 md:translate-x-[-340px]'>
             <div className='mb-4 text-black md:mb-20'>
               <MoveDownRight size={28} strokeWidth={1.25} />
             </div>
