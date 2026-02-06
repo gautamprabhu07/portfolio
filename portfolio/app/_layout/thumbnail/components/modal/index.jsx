@@ -27,6 +27,7 @@ export const ThumbnailModal = forwardRef(
             width={320}
             height={320}
             alt={`${title} thumbnail image`}
+            className='object-cover'
           />
         </Center>
       );
@@ -35,7 +36,7 @@ export const ThumbnailModal = forwardRef(
     return (
       <MotionComponent
         ref={ref}
-        className='pointer-events-none fixed left-1/2 top-1/2 h-80 w-80 overflow-hidden rounded bg-secondary-foreground'
+        className='pointer-events-none fixed left-1/2 top-1/2 h-80 w-80 overflow-hidden rounded-lg border border-border bg-secondary-foreground shadow-2xl'
         variants={variants}
         initial='initial'
         animate={active ? 'enter' : 'closed'}

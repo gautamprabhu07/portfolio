@@ -24,7 +24,10 @@ export function Description() {
 
         <div className='basis-7/12 lg:basis-3/12'>
           <ParallaxFade>
-            <Balancer as='p' className='mt-2 text-base lg:text-lg'>
+            <Balancer 
+              as='p' 
+              className='mt-2 text-base leading-relaxed text-muted-foreground lg:text-lg'
+            >
               Quick to learn, eager to explore, and focused on continuous improvement through hands-on building.
             </Balancer>
           </ParallaxFade>
@@ -35,9 +38,13 @@ export function Description() {
           viewport={{ once: true }}
           transition={{
             duration: 0.5,
+            ease: [0.33, 1, 0.68, 1],
           }}
         >
-          <div className='absolute right-0 top-3/4 lg:top-full lg:me-10' style={{ marginRight: '-20px' }}>
+          <div 
+            className='absolute right-0 top-3/4 lg:top-full lg:me-10' 
+            style={{ marginRight: '-20px' }}
+          >
             <Link href='/about' passHref>
               <MagneticButton variant='ghost' size='xl'>
                 About me

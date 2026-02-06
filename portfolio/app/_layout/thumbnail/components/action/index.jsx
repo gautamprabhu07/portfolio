@@ -7,10 +7,15 @@ import { Center, MagneticButton } from '@/components';
 export function ThumbnailAction({ children }) {
   return (
     <Center>
-      <Link href='https://github.com/gautamprabhu07' target='_blank' rel='noopener noreferrer' passHref>
+      <Link 
+        href='https://github.com/gautamprabhu07' 
+        target='_blank' 
+        rel='noopener noreferrer' 
+        passHref
+      >
         <MagneticButton
           variant='outline'
-          className='px-10 py-8 text-base before:-top-1/2 hover:text-background'
+          className='px-10 py-8 text-base font-medium before:-top-1/2 hover:text-background'
         >
           {children}
         </MagneticButton>

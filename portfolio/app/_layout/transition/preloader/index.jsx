@@ -25,7 +25,7 @@ export function Preloader({ isFirstLoad, pageName }) {
   useTimeOut({
     callback: () => {
       if (isFirstLoad) {
-        setIndex(prevIndex => prevIndex + 1);
+        setIndex(prevIndex => (prevIndex + 1) % preloaderWords.length);
       }
     },
     duration: index === 0 ? 500 : 250,

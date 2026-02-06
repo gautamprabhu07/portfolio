@@ -21,7 +21,7 @@ export function ThumbnailList({
     return (
       <li
         key={`thumbnail-list-${id}`}
-        className='border-t border-solid transition-all last-of-type:border-b group-hover:opacity-90'
+        className='border-t border-solid border-border transition-all last-of-type:border-b hover:bg-muted/30'
         style={{
           paddingInline: 'calc(clamp(1em,3vw,4em) * 2)',
           paddingBlock: 'clamp(1em,3vw,4em)',
@@ -37,23 +37,26 @@ export function ThumbnailList({
       >
         <Link
           href={href}
-          className='flex items-center justify-between max-lg:flex-wrap'
+          className='flex items-center justify-between max-lg:flex-wrap max-lg:gap-2'
           target='_blank'
           rel='noopener noreferrer'
           passHref
         >
           <h4
+            className='font-normal tracking-tight text-foreground transition-colors hover:text-primary'
             style={{
               fontSize: 'calc(clamp(3.25em, 7vw, 8em) * 0.75)',
             }}
           >
             {title}
           </h4>
-          <p className='text-lg font-medium'>{description}</p>
+          <p className='text-base font-medium text-muted-foreground lg:text-lg'>
+            {description}
+          </p>
         </Link>
       </li>
     );
   });
 
-  return <ul className='group'>{items}</ul>;
+  return <ul>{items}</ul>;
 }
