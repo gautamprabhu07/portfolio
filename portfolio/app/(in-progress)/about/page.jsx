@@ -11,7 +11,7 @@ import {
 
 /** @type {import('next').Metadata} */
 export const metadata = {
-  title: 'About | Gautam Prabhu',
+  title: 'About',
   description:
     'Full-stack developer with a strong backend and systems mindset. Engineering software that\'s practical, maintainable, and production-ready.',
 };

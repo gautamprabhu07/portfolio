@@ -9,7 +9,7 @@ import {
 
 /** @type {import('next').Metadata} */
 export const metadata = {
-  title: 'Contact - Gautam Prabhu',
+  title: 'Contact',
   description:
     'Get in touch with Gautam Prabhu. Available for full-stack development internships and open-source collaborations. Based in Manipal, Karnataka, India.',
 };
