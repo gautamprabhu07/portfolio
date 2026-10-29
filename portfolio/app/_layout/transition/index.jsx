@@ -53,7 +53,11 @@ export function Transition({ children, stickySafe = false }) {
       className={stickySafe ? 'overflow-clip' : 'overflow-hidden'}
     >
       <AnimatePresence mode='wait'>
-        {isLoading ? <Preloader isFirstLoad={isFirstLoad} pageName={getPageName()} /> : null}
+        {isLoading ? <Preloader
+            isFirstLoad={isFirstLoad}
+            pageName={getPageName()}
+            onLightPage={pathname === '/'}
+          /> : null}
       </AnimatePresence>
       {children}
     </div>

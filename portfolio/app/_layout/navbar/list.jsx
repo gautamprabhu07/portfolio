@@ -11,6 +11,7 @@ import { randomId } from '@/utils';
 export function NavbarList() {
   const pathname = usePathname();
   const isAboutPage = pathname === '/about';
+  const isContactPage = pathname === '/contact';
   
   const filteredItems = navItems.slice(1).filter(item => {
     // On about page, exclude 'about' link
@@ -21,9 +22,13 @@ export function NavbarList() {
   });
   
   // On about page, add home link if not already present
-  const displayItems = isAboutPage 
-    ? [navItems[0], ...filteredItems.filter(item => item.title !== 'home')]
-    : filteredItems;
+  const withoutHome = filteredItems.filter(item => item.title !== 'home');
+  // On the contact page, drop the contact link and end with home instead.
+  const displayItems = isAboutPage
+    ? [navItems[0], ...withoutHome]
+    : isContactPage
+      ? [...withoutHome.filter(item => item.title !== 'contact'), navItems[0]]
+      : filteredItems;
 
   const items = displayItems.map(({ href, title }) => {
     const id = randomId();
