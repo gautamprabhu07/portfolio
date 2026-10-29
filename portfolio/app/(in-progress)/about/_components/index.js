@@ -1,6 +1,6 @@
 // app/(in-progress)/about/_components/index.js
 export { AboutHero } from './hero';
 export { AboutPersonal } from './personal';
-export { AboutExperience } from './experience';
-export { AboutEducation } from './education';
-export { AboutFocus } from './focus';
+export { AboutJourney } from './journey';
+export { AboutApproach } from './approach';
+export { AboutMotion } from './shared';

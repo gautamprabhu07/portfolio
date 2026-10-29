@@ -1,116 +1,152 @@
 'use client';
 // app/(in-progress)/about/_components/hero/index.jsx
 
-import { useRef } from 'react';
-
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown, MoveDownRight } from 'lucide-react';
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 import Image from 'next/image';
+import Balancer from 'react-wrap-balancer';
 
-import { 
-  BackgroundOverlay,
-  HeroGrid,
-  HeroSection,
-  HeroSubtitle,
-  HeroTitle,
-  ImageColumn,
-  ImageWrapper,
-  ScrollIndicator,
-  TextColumn,
-} from './hero.styled';
+import { ParallaxFade, ParallaxSlider } from '@/components';
+
+import { HeadlineReveal } from '../shared';
+
+const statement = 'Turning ideas into reliable systems.';
+
+const facts = [
+  { label: 'Based in', value: 'Manipal, Karnataka, India' },
+  { label: 'Currently', value: 'Full-Stack Intern at GoPerch' },
+  { label: 'Studying', value: 'B.Tech Computer Science, MIT Manipal' },
+  { label: 'Availability', value: 'Seeking internship · Open to hire' },
+];
+
+const spring = { stiffness: 90, damping: 18, mass: 0.4 };
 
 export function AboutHero() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
-  });
+  const reduceMotion = useReducedMotion();
 
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  // Pointer position relative to the header, -0.5 … 0.5
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const smoothX = useSpring(pointerX, spring);
+  const smoothY = useSpring(pointerY, spring);
 
-  const handleScrollDown = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: 'smooth',
-    });
+  const portraitX = useTransform(smoothX, [-0.5, 0.5], [-22, 22]);
+  const portraitY = useTransform(smoothY, [-0.5, 0.5], [-14, 14]);
+  const portraitRotate = useTransform(smoothX, [-0.5, 0.5], [-8, 8]);
+  const headlineX = useTransform(smoothX, [-0.5, 0.5], [10, -10]);
+  const ringScale = useTransform(smoothX, [-0.5, 0.5], [1.08, 0.94]);
+
+  const handlePointerMove = (event) => {
+    if (reduceMotion || event.pointerType !== 'mouse') return;
+    const { left, top, width, height } =
+      event.currentTarget.getBoundingClientRect();
+    pointerX.set((event.clientX - left) / width - 0.5);
+    pointerY.set((event.clientY - top) / height - 0.5);
+  };
+
+  const handlePointerLeave = () => {
+    pointerX.set(0);
+    pointerY.set(0);
   };
 
   return (
-    <HeroSection ref={containerRef}>
-      <BackgroundOverlay />
-      
-      <div className='container' style={{ position: 'relative', zIndex: 1 }}>
-        <HeroGrid>
-          <TextColumn>
-            <motion.div
-              style={{ y: textY, opacity }}
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.33, 1, 0.68, 1],
-                delay: 0.2 
-              }}
-            >
+    <header
+      className='overflow-hidden bg-foreground text-background'
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+    >
+      <div className='container'>
+        <div
+          className='flex min-h-[92vh] flex-col justify-end'
+          style={{
+            paddingBlock: 'clamp(8em, 20vh, 14em) clamp(2.5em, 5vh, 4em)',
+            paddingInline: 'clamp(2.5em, 4vw, 8em)',
+          }}
+        >
+          <p className='mb-8 text-xs uppercase tracking-wider text-background/50'>
+            About
+          </p>
+
+          <motion.h1
+            style={reduceMotion ? undefined : { x: headlineX }}
+            className='max-w-[15ch] text-[clamp(3rem,8.5vw,9.5rem)] font-normal leading-[1.1] tracking-tight'
+          >
+            <HeadlineReveal text={statement} />
+          </motion.h1>
+
+          <div className='mt-16 grid items-end gap-10 lg:mt-20 lg:grid-cols-12'>
+            <div className='relative size-[clamp(110px,10vw,150px)] lg:col-span-6'>
+              <motion.span
+                aria-hidden='true'
+                style={reduceMotion ? undefined : { scale: ringScale }}
+                className='absolute -inset-3 rounded-full border border-background/25'
+              />
               <motion.div
-                className='mb-6 flex items-center gap-3'
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                style={
+                  reduceMotion
+                    ? undefined
+                    : { x: portraitX, y: portraitY, rotate: portraitRotate }
+                }
+                className='size-full'
               >
-                <MoveDownRight size={24} strokeWidth={1.5} className='text-background' />
-                <HeroSubtitle>Software Developer</HeroSubtitle>
-              </motion.div>
-
-              <HeroTitle>
-                Engineering software that&apos;s{' '}
-                <span className='italic' style={{ color: 'hsl(232 79% 59%)' }}>
-                  practical
-                </span>
-                , maintainable, and production-ready
-              </HeroTitle>
-            </motion.div>
-          </TextColumn>
-
-          <ImageColumn>
-            <motion.div
-              style={{ y: imageY }}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ 
-                duration: 1, 
-                delay: 0.5, 
-                ease: [0.33, 1, 0.68, 1] 
-              }}
-            >
-              <ImageWrapper>
                 <Image
                   src='/images/about-1.png'
-                  alt='Gautam Prabhu'
-                  fill
-                  className='object-cover'
+                  alt='Illustrated portrait of Gautam Prabhu'
+                  width={220}
+                  height={220}
                   priority
-                  sizes='(max-width: 1024px) 100vw, 50vw'
+                  className='size-full rounded-full'
                 />
-              </ImageWrapper>
-            </motion.div>
-          </ImageColumn>
-        </HeroGrid>
+              </motion.div>
+            </div>
+
+            <div className='lg:col-span-5'>
+              <ParallaxFade>
+                <Balancer
+                  as='p'
+                  className='max-w-md text-base leading-relaxed text-background/70 lg:text-lg'
+                >
+                  Full-stack developer with a strong backend and systems
+                  mindset. Software that&apos;s practical, maintainable, and
+                  production-ready.
+                </Balancer>
+              </ParallaxFade>
+            </div>
+          </div>
+
+          <ParallaxFade>
+            <dl className='mt-16 grid gap-8 border-t border-background/20 pt-8 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4'>
+              {facts.map(({ label, value }) => (
+                <div key={label}>
+                  <dt className='text-xs uppercase tracking-wider text-background/50'>
+                    {label}
+                  </dt>
+                  <dd className='mt-2 text-base lg:text-lg'>{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </ParallaxFade>
+        </div>
       </div>
 
-      <ScrollIndicator
-        style={{ opacity: scrollIndicatorOpacity }}
-        onClick={handleScrollDown}
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.2 }}
-        aria-label='Scroll down'
+      <div
+        aria-hidden='true'
+        className='select-none border-t border-background/15 py-6 text-[clamp(2.5rem,6vw,6rem)] font-normal tracking-tight text-transparent [-webkit-text-stroke:1px_hsl(var(--background)/0.4)]'
       >
-        <ChevronDown size={28} strokeWidth={2} />
-      </ScrollIndicator>
-    </HeroSection>
+        <ParallaxSlider repeat={4} baseVelocity={-1.5}>
+          <span className='pe-10'>
+            Backend<span className='px-10'>—</span>Full-Stack
+            <span className='px-10'>—</span>Systems
+            <span className='px-10'>—</span>Cloud
+            <span className='px-10'>—</span>
+          </span>
+        </ParallaxSlider>
+      </div>
+    </header>
   );
 }

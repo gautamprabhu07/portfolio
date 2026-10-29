@@ -1,160 +1,94 @@
 'use client';
 // app/(in-progress)/about/_components/personal/index.jsx
+
 import { useRef } from 'react';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from 'framer-motion';
 import Balancer from 'react-wrap-balancer';
 
-import {
-  BodyText,
-  HighlightText,
-  ImageColumn,
-  ImageFrame,
-  PersonalGrid,
-  PersonalWrapper,
-  SectionLabel,
-  StatCard,
-  StatsGrid,
-  TextColumn,
-} from './personal.styled';
+import { ParallaxFade } from '@/components';
 
-const stats = [
-  { label: 'Projects Built', value: '15+' },
-  { label: 'Technologies', value: '20+' },
-  { label: 'Coffee Consumed', value: '∞' },
-];
+import { Section, SectionLabel } from '../shared';
 
-const reveal = {
-  initial: { opacity: 0, y: 40 },
-  open: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      delay: 0.1 * i,
-      ease: [0.33, 1, 0.68, 1],
-    },
-  }),
-};
+const lead =
+  'I build end-to-end software systems with a focus on clean architecture, security, and scalability. Every line of code I write is intentional, maintainable, and production-ready.';
+
+const words = lead.split(' ');
+
+/** A word that darkens from muted to full colour as the paragraph is read. */
+function FillWord({ word, progress, start, end, still }) {
+  const opacity = useTransform(progress, [start, end], [0.16, 1]);
+  return (
+    <motion.span
+      style={still ? undefined : { opacity }}
+      className='me-[0.22em] inline-block'
+    >
+      {word}
+    </motion.span>
+  );
+}
 
 export function AboutPersonal() {
-  const containerRef = useRef(null);
+  const reduceMotion = useReducedMotion();
+  const leadRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start']
+    target: leadRef,
+    offset: ['start 0.85', 'end 0.45'],
   });
 
-  const imageY = useTransform(scrollYProgress, [0, 1], [80, -80]);
-  const textY = useTransform(scrollYProgress, [0, 1], [40, -40]);
-
   return (
-    <section className='bg-background text-foreground' ref={containerRef}>
-      <PersonalWrapper className='container'>
-        <PersonalGrid>
-          <TextColumn>
-            <motion.div
-              style={{ y: textY }}
-              initial='initial'
-              whileInView='open'
-              viewport={{ once: true }}
-            >
-              <motion.div custom={0} variants={reveal}>
-                <SectionLabel>About Me</SectionLabel>
-              </motion.div>
+    <Section>
+      <div className='grid gap-10 lg:grid-cols-12'>
+        <SectionLabel className='lg:col-span-3'>Introduction</SectionLabel>
 
-              <motion.div custom={1} variants={reveal}>
-                <BodyText>
-                  <Balancer>
-                    <HighlightText>I build end-to-end software systems</HighlightText> with a focus on{' '}
-                    clean architecture, security, and scalability. Every line of code I write
-                    is intentional, maintainable, and production-ready.
-                  </Balancer>
-                </BodyText>
-              </motion.div>
+        <div className='lg:col-span-9'>
+          <h2
+            ref={leadRef}
+            className='text-[clamp(1.6rem,3vw,3.5rem)] font-normal leading-[1.3] tracking-tight'
+          >
+            {words.map((word, index) => (
+              <FillWord
+                key={`${word}-${index}`}
+                word={word}
+                progress={scrollYProgress}
+                start={index / words.length}
+                end={Math.min(1, (index + 4) / words.length)}
+                still={reduceMotion}
+              />
+            ))}
+          </h2>
 
-              <motion.div custom={2} variants={reveal}>
-                <BodyText className='mt-6'>
-                  <Balancer>
-                    I enjoy working close to the system—understanding requirements, designing APIs,
-                    implementing authentication flows, and optimizing database queries.
-                    I am a fast learner, curious by nature, and comfortable adapting to new
-                    technologies and environments.
-                  </Balancer>
-                </BodyText>
-              </motion.div>
+          <div className='mt-16 grid gap-8 text-base leading-relaxed text-muted-foreground md:grid-cols-2 md:gap-12 lg:text-lg'>
+            <ParallaxFade>
+              <Balancer as='p'>
+                I enjoy working close to the system: understanding requirements,
+                designing APIs, implementing authentication flows, and
+                optimizing database queries. I am a fast learner, curious by
+                nature, and comfortable adapting to new technologies and
+                environments.
+              </Balancer>
+            </ParallaxFade>
+            <ParallaxFade>
+              <Balancer as='p'>
+                Whether it&apos;s building an ERP platform, designing a
+                recommendation system, or deploying on university servers under
+                tight deadlines, I take ownership of the entire lifecycle.
+              </Balancer>
+            </ParallaxFade>
+          </div>
 
-              <motion.div custom={3} variants={reveal}>
-                <BodyText className='mt-6'>
-                  <Balancer>
-                    Whether it&apos;s building an ERP platform, designing a recommendation system,
-                    or deploying on university servers under tight deadlines, I take ownership
-                    of the entire lifecycle.
-                  </Balancer>
-                </BodyText>
-              </motion.div>
-
-              <motion.div custom={4} variants={reveal}>
-                <StatsGrid>
-                  {stats.map((stat, index) => (
-                    <StatCard
-                      key={stat.label}
-                      whileHover={{ y: -8, scale: 1.05 }}
-                      transition={{ 
-                        duration: 0.3, 
-                        ease: [0.33, 1, 0.68, 1] 
-                      }}
-                    >
-                      <div className='mb-1 text-3xl font-bold' style={{ color: 'hsl(232 79% 59%)' }}>
-                        {stat.value}
-                      </div>
-                      <div className='text-sm font-medium text-muted-foreground'>
-                        {stat.label}
-                      </div>
-                    </StatCard>
-                  ))}
-                </StatsGrid>
-              </motion.div>
-
-              <motion.div custom={5} variants={reveal}>
-                <BodyText className='mt-8 font-semibold italic text-muted-foreground'>
-                  Always learning. Always building.
-                </BodyText>
-              </motion.div>
-            </motion.div>
-          </TextColumn>
-
-          <ImageColumn>
-            <motion.div
-              style={{ y: imageY }}
-              initial={{ opacity: 0, scale: 0.9, rotate: -3 }}
-              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-              viewport={{ once: true }}
-              transition={{ 
-                duration: 1, 
-                delay: 0.3, 
-                ease: [0.33, 1, 0.68, 1] 
-              }}
-            >
-              <ImageFrame
-                whileHover={{ rotate: 2, scale: 1.02 }}
-                transition={{ 
-                  duration: 0.4, 
-                  ease: [0.33, 1, 0.68, 1] 
-                }}
-              >
-                <Image
-                  src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop'
-                  alt='Coding workspace'
-                  fill
-                  className='object-cover'
-                  sizes='(max-width: 1024px) 100vw, 40vw'
-                />
-              </ImageFrame>
-            </motion.div>
-          </ImageColumn>
-        </PersonalGrid>
-      </PersonalWrapper>
-    </section>
+          <ParallaxFade>
+            <p className='mt-12 text-base text-foreground lg:text-lg'>
+              Always learning. Always building.
+            </p>
+          </ParallaxFade>
+        </div>
+      </div>
+    </Section>
   );
 }

@@ -2,10 +2,10 @@
 import { Contact, Navbar, Transition } from '@/layout';
 
 import {
-  AboutEducation,
-  AboutExperience,
-  AboutFocus,
+  AboutApproach,
   AboutHero,
+  AboutJourney,
+  AboutMotion,
   AboutPersonal,
 } from './_components';
 
@@ -18,16 +18,17 @@ export const metadata = {
 
 export default function About() {
   return (
-    <Transition>
-      <Navbar />
-      <main>
+    <Transition stickySafe>
+      <AboutMotion>
+        <Navbar />
         <AboutHero />
-        <AboutPersonal />
-        <AboutExperience />
-        <AboutEducation />
-        <AboutFocus />
-      </main>
-      <Contact />
+        <main>
+          <AboutPersonal />
+          <AboutJourney />
+          <AboutApproach />
+        </main>
+        <Contact />
+      </AboutMotion>
     </Transition>
   );
 }
