@@ -5,15 +5,15 @@ import {
   Header,
   Navbar,
   Project,
-  Thumbnail,
   Transition,
+  Work,
 } from '@/layout';
 
 /** @type {import('next').Metadata} */
 export const metadata = {
   title: 'Home',
   description:
-    'Aspiring Software Developer | Web Full-Stack, Backend & Systems | Cloud & Dev Fundamentals. Turning ideas into reliable systems.',
+    'Software Developer | Full-Stack, Backend & Systems | Cloud, AI Agents & Containers. Turning ideas into reliable systems.',
 };
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
       <Header />
       <main>
         <Description />
-        <Thumbnail />
+        <Work />
         <Project />
       </main>
       <Contact />

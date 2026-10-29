@@ -126,6 +126,7 @@ export function AboutJourney() {
   return (
     <section
       ref={sectionRef}
+      id='journey'
       aria-label='Journey'
       className='relative bg-foreground text-background'
       style={pinned ? { height: `calc(100vh + ${distance}px)` } : undefined}

@@ -39,6 +39,17 @@ export function Project() {
 
   return (
     <section ref={containerRef} className='relative z-10 mt-14'>
+      <div
+        className='container mb-8 flex flex-wrap items-end justify-between gap-4'
+        style={{ paddingInline: 'clamp(2.5em, 4vw, 8em)' }}
+      >
+        <p className='text-xs uppercase tracking-wider text-muted-foreground'>
+          Screens from the projects
+        </p>
+        <p className='text-base text-muted-foreground lg:text-lg'>
+          Scroll and the rows slide past
+        </p>
+      </div>
       <div className='grid items-center'>
         <div className='bg-background'>
           <motion.div

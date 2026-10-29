@@ -3,13 +3,22 @@
 
 import { useRef } from 'react';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 import { ChevronDown, MoveDownRight } from 'lucide-react';
 import Image from 'next/image';
 import { styled } from 'styled-components';
 
 import { ParallaxSlider } from '@/components';
 
+import { AboutTab } from '../about-tab';
+import { Disciplines } from '../disciplines';
 import { slideUp } from './variants';
 
 const ScrollIndicator = styled(motion.button)`
@@ -60,19 +69,42 @@ const ScrollIndicator = styled(motion.button)`
   }
 `;
 
+const spring = { stiffness: 80, damping: 18, mass: 0.5 };
+
 export function Header() {
   const containerRef = useRef(null);
+  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
   });
 
   const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const photoScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
+
+  // Pointer position over the hero, -0.5 … 0.5; drives the layered depth.
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const smoothX = useSpring(pointerX, spring);
+  const smoothY = useSpring(pointerY, spring);
+  const nameX = useTransform(smoothX, [-0.5, 0.5], [18, -18]);
+
+  const handlePointerMove = (event) => {
+    if (reduceMotion || event.pointerType !== 'mouse') return;
+    const { left, top, width, height } =
+      event.currentTarget.getBoundingClientRect();
+    pointerX.set((event.clientX - left) / width - 0.5);
+    pointerY.set((event.clientY - top) / height - 0.5);
+  };
+  const handlePointerLeave = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
 
   const handleScrollDown = () => {
     window.scrollTo({
       top: window.innerHeight,
-      behavior: 'smooth',
+      behavior: reduceMotion ? 'auto' : 'smooth',
     });
   };
 
@@ -83,23 +115,30 @@ export function Header() {
       variants={slideUp}
       initial='initial'
       animate='enter'
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
     >
-      {/* Background Image */}
-      <Image
-        src='/images/hero-profile.png'
-        className='object-cover'
-        fill={true}
-        sizes='100vw'
-        alt='Gautam Prabhu Personal Picture'
-        priority
-      />
+      {/* Background image: slowly pushes in as the page scrolls */}
+      <motion.div
+        className='absolute inset-0'
+        style={reduceMotion ? undefined : { scale: photoScale }}
+      >
+        <Image
+          src='/images/hero-profile.png'
+          className='object-cover'
+          fill={true}
+          sizes='100vw'
+          alt='Gautam Prabhu Personal Picture'
+          priority
+        />
+      </motion.div>
 
       {/* Subtle Dark Overlay for Better Contrast */}
       <div className='absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40' />
 
       <div className='relative flex h-full flex-col justify-end gap-2 md:flex-col-reverse md:justify-normal'>
         {/* Animated Name */}
-        <div className='select-none'>
+        <motion.div className='select-none' style={reduceMotion ? undefined : { x: nameX }}>
           <h1 className='text-[max(9em,15vw)] font-normal tracking-tight'>
             <ParallaxSlider repeat={4} baseVelocity={2}>
               <span className='pe-12'>
@@ -108,22 +147,39 @@ export function Header() {
               </span>
             </ParallaxSlider>
           </h1>
-        </div>
+        </motion.div>
 
         {/* Subtitle Section */}
         <div className='md:ml-auto'>
-          <div className='mx-10 max-md:my-12 md:mx-10 md:translate-x-[-340px]'>
+          <div className='mx-10 max-md:mb-28 max-md:mt-12 md:mx-10 md:translate-x-[-340px]'>
             <div className='mb-4 text-black md:mb-20'>
               <MoveDownRight size={28} strokeWidth={1.25} />
             </div>
 
             <h4 className='text-[clamp(1.55em,2.5vw,2.75em)] font-medium leading-snug text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]'>
-              <span className='block'>Aspiring Software Developer</span>
+              <span className='block'>Software Developer</span>
               <span className='block opacity-95'>Full-Stack | Backend | Systems</span>
+              <span className='block text-[0.6em] font-normal opacity-90'>
+                Cloud, AI Agents &amp; Containers
+              </span>
             </h4>
           </div>
         </div>
       </div>
+
+      {/* Layer: floating disciplines (desktop). Small screens get the same
+          content inline, in the intro section. */}
+      <motion.div
+        className='absolute right-[5vw] top-[12%] z-10 hidden w-[min(27vw,23rem)] lg:block lg:[@media(max-height:760px)]:hidden'
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 3.2, ease: [0.33, 1, 0.68, 1] }}
+      >
+        <Disciplines variant='floating' pointerX={smoothX} pointerY={smoothY} />
+      </motion.div>
+
+      {/* Layer: the way to /about, a tab on the right edge, always visible */}
+      <AboutTab />
 
       <ScrollIndicator
         style={{ opacity: scrollIndicatorOpacity }}
