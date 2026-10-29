@@ -75,9 +75,10 @@ export function AboutPersonal() {
             </ParallaxFade>
             <ParallaxFade>
               <Balancer as='p'>
-                Whether it&apos;s building an ERP platform, designing a
-                recommendation system, or deploying on university servers under
-                tight deadlines, I take ownership of the entire lifecycle.
+                Whether it&apos;s a workflow platform used by 500+ people, a
+                containerized ERP backend on Kubernetes, microservices on
+                Kafka, or a Linux container runtime written from scratch in C,
+                I take ownership of the entire lifecycle.
               </Balancer>
             </ParallaxFade>
           </div>

@@ -3,6 +3,7 @@ import { Contact, Navbar, Transition } from '@/layout';
 
 import {
   AboutApproach,
+  AboutBuilds,
   AboutHero,
   AboutJourney,
   AboutMotion,
@@ -13,7 +14,7 @@ import {
 export const metadata = {
   title: 'About',
   description:
-    'Full-stack developer with a strong backend and systems mindset. Engineering software that\'s practical, maintainable, and production-ready.',
+    'Software developer across full-stack, backend and systems, with a growing focus on cloud, AI agents and containers. Turning ideas into reliable systems.',
 };
 
 export default function About() {
@@ -24,6 +25,7 @@ export default function About() {
         <AboutHero />
         <main>
           <AboutPersonal />
+          <AboutBuilds />
           <AboutJourney />
           <AboutApproach />
         </main>

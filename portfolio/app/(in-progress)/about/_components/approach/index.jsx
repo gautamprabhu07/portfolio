@@ -25,9 +25,117 @@ const item = {
   open: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, delay: 0.04 * i, ease: easing },
+    transition: { duration: 0.4, delay: 0.03 * i, ease: easing },
   }),
 };
+
+function countOf(group) {
+  if (group.certifications) return group.certifications.length;
+  return group.sections.reduce((total, { items }) => total + items.length, 0);
+}
+
+function ItemList({ items, offset = 0 }) {
+  return (
+    <ul className='flex flex-wrap gap-x-[0.5em] gap-y-2 text-[clamp(1.05rem,1.4vw,1.5rem)] leading-snug'>
+      {items.map((name, index) => (
+        <motion.li
+          key={name}
+          custom={offset + index}
+          variants={item}
+          initial='initial'
+          animate='open'
+          className='after:content-[","] last:after:hidden'
+        >
+          {name}
+        </motion.li>
+      ))}
+    </ul>
+  );
+}
+
+function CertificationList({ certifications }) {
+  return (
+    <ul>
+      {certifications.map(({ name, issuer, date, href }, index) => (
+        <motion.li
+          key={name}
+          custom={index}
+          variants={item}
+          initial='initial'
+          animate='open'
+          className='border-t border-border py-4 last:border-b'
+        >
+          {href ? (
+            <a
+              href={href}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-[clamp(1.1rem,1.5vw,1.6rem)] leading-snug transition-colors hover:text-primary focus-visible:text-primary focus-visible:outline-none'
+            >
+              {name}
+              <span className='sr-only'> (opens in a new tab)</span>
+              <span aria-hidden='true' className='ms-2 text-muted-foreground'>
+                ↗
+              </span>
+            </a>
+          ) : (
+            <p className='text-[clamp(1.1rem,1.5vw,1.6rem)] leading-snug'>
+              {name}
+            </p>
+          )}
+          <p className='mt-1 text-sm text-muted-foreground'>
+            {issuer}
+            {date ? ` · ${date}` : ''}
+          </p>
+        </motion.li>
+      ))}
+    </ul>
+  );
+}
+
+/** The description + items for one layer. */
+function PanelBody({ group }) {
+  const multiple = group.sections && group.sections.length > 1;
+  let runningOffset = 0;
+
+  return (
+    <>
+      {group.description && (
+        <Balancer
+          as='p'
+          className='mb-8 text-[clamp(1.3rem,1.9vw,2.1rem)] leading-snug tracking-tight'
+        >
+          {group.description}
+        </Balancer>
+      )}
+
+      <p className='mb-5 border-t border-border pt-4 text-xs uppercase tracking-wider text-muted-foreground'>
+        {countOf(group)} in this layer
+      </p>
+
+      {group.certifications ? (
+        <CertificationList certifications={group.certifications} />
+      ) : (
+        <div className='grid gap-6'>
+          {group.sections.map(({ label, items }) => {
+            const offset = runningOffset;
+            runningOffset += items.length;
+            return (
+              <div key={label ?? 'all'}>
+                {multiple && label && (
+                  <p className='mb-2 text-xs uppercase tracking-wider text-muted-foreground'>
+                    {label}
+                  </p>
+                )}
+                <ItemList items={items} offset={offset} />
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </>
+  );
+}
 
 export function AboutApproach() {
   const [selected, setSelected] = useState(0);
@@ -56,14 +164,14 @@ export function AboutApproach() {
                   onPointerEnter={(event) =>
                     event.pointerType === 'mouse' && setSelected(index)
                   }
-                  className='group flex w-full items-baseline gap-4 py-5 text-start outline-none focus-visible:bg-muted/50 lg:gap-6 lg:py-7'
+                  className='group flex w-full items-baseline gap-4 py-4 text-start outline-none focus-visible:bg-muted/50 lg:gap-6 lg:py-5'
                 >
                   <span className='w-8 shrink-0 text-xs tabular-nums text-muted-foreground'>
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <span
                     className={cn(
-                      'text-[clamp(2rem,4.3vw,5rem)] font-normal leading-[1.1] tracking-tight transition-[color,transform] duration-500 ease-out',
+                      'text-[clamp(1.9rem,4vw,4.5rem)] font-normal leading-[1.1] tracking-tight transition-[color,transform] duration-500 ease-out',
                       isActive
                         ? 'translate-x-3 text-foreground'
                         : 'text-foreground/25 group-hover:text-foreground/60',
@@ -82,16 +190,32 @@ export function AboutApproach() {
                     strokeWidth={1.25}
                   />
                 </button>
+
+                {/* Small screens: show the layer right under the one tapped,
+                    so it is never stranded below the whole list. */}
+                {isActive && (
+                  <motion.div
+                    key={id}
+                    variants={panel}
+                    initial='initial'
+                    animate='open'
+                    className='pb-8 ps-12 lg:hidden'
+                  >
+                    <PanelBody group={group} />
+                  </motion.div>
+                )}
               </li>
             );
           })}
         </ul>
 
+        {/* Large screens: sticky, so the panel stays beside whichever layer
+            is being hovered instead of sitting at the top of the column. */}
         <div
           id='approach-panel'
           role='tabpanel'
           aria-labelledby={`approach-tab-${group.id}`}
-          className='lg:col-span-5 lg:min-h-[26rem]'
+          className='hidden lg:sticky lg:top-28 lg:col-span-5 lg:block lg:min-h-[28rem] lg:self-start'
         >
           <AnimatePresence mode='wait'>
             <motion.div
@@ -101,33 +225,7 @@ export function AboutApproach() {
               animate='open'
               exit='closed'
             >
-              {group.description && (
-                <Balancer
-                  as='p'
-                  className='mb-10 text-[clamp(1.4rem,2vw,2.25rem)] leading-snug tracking-tight'
-                >
-                  {group.description}
-                </Balancer>
-              )}
-
-              <p className='mb-4 border-t border-border pt-4 text-xs uppercase tracking-wider text-muted-foreground'>
-                {group.items.length} in this layer
-              </p>
-
-              <ul className='flex flex-wrap gap-x-[0.5em] gap-y-2 text-[clamp(1.1rem,1.5vw,1.6rem)] leading-snug'>
-                {group.items.map((name, index) => (
-                  <motion.li
-                    key={name}
-                    custom={index}
-                    variants={item}
-                    initial='initial'
-                    animate='open'
-                    className='after:content-[","] last:after:hidden'
-                  >
-                    {name}
-                  </motion.li>
-                ))}
-              </ul>
+              <PanelBody group={group} />
             </motion.div>
           </AnimatePresence>
         </div>

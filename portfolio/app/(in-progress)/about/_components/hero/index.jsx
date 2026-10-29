@@ -19,8 +19,8 @@ const statement = 'Turning ideas into reliable systems.';
 
 const facts = [
   { label: 'Based in', value: 'Manipal, Karnataka, India' },
-  { label: 'Currently', value: 'Full-Stack Intern at GoPerch' },
-  { label: 'Studying', value: 'B.Tech Computer Science, MIT Manipal' },
+  { label: 'Currently', value: 'Full-Stack Developer Intern at Eventory' },
+  { label: 'Studying', value: 'B.Tech Computer Science, MIT Manipal · CGPA 8.58' },
   { label: 'Availability', value: 'Seeking internship · Open to hire' },
 ];
 
@@ -111,9 +111,9 @@ export function AboutHero() {
                   as='p'
                   className='max-w-md text-base leading-relaxed text-background/70 lg:text-lg'
                 >
-                  Full-stack developer with a strong backend and systems
-                  mindset. Software that&apos;s practical, maintainable, and
-                  production-ready.
+                  Software developer across full-stack, backend and systems,
+                  with a growing focus on cloud, AI agents and containers.
+                  Practical, maintainable, and production-ready.
                 </Balancer>
               </ParallaxFade>
             </div>
@@ -140,9 +140,11 @@ export function AboutHero() {
       >
         <ParallaxSlider repeat={4} baseVelocity={-1.5}>
           <span className='pe-10'>
-            Backend<span className='px-10'>—</span>Full-Stack
+            Full-Stack<span className='px-10'>—</span>Backend
             <span className='px-10'>—</span>Systems
             <span className='px-10'>—</span>Cloud
+            <span className='px-10'>—</span>AI Agents
+            <span className='px-10'>—</span>Containers
             <span className='px-10'>—</span>
           </span>
         </ParallaxSlider>
