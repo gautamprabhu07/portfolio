@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   top: 0;
   right: 0;
   margin: 1.5rem;
-  z-index: 40;
+  z-index: 80;
 `;
 
 export const Burger = styled.span`

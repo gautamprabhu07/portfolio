@@ -34,13 +34,16 @@ export function OffcanvasToggle({ isOpen, handleOpen }) {
       style={{ scale: scrollYProgress }}
     >
       <MagneticButton
+        id='offcanvas-toggle'
         size='md'
         variant='ghost'
         className='border border-solid border-muted-foreground'
+        aria-expanded={isOpen}
+        aria-controls='site-navigation'
+        aria-label={isOpen ? 'Close navigation' : 'Open navigation'}
         onClick={() => handleOpen(!isOpen)}
       >
         <Burger $isActive={isOpen} />
-        <span className='sr-only focus:not-sr-only'>Offcanvas Toggle</span>
       </MagneticButton>
     </Wrapper>
   );

@@ -7,13 +7,19 @@ import Lenis from '@studio-freight/lenis';
 export function useLenis() {
   useEffect(() => {
     const lenis = new Lenis();
+    let frame = 0;
 
     function raf(time) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      frame = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    frame = requestAnimationFrame(raf);
 
-    return () => cancelAnimationFrame(raf);
+    // Each page mounts its own scroller; stop it when the page goes away so
+    // loops do not pile up across navigations.
+    return () => {
+      cancelAnimationFrame(frame);
+      lenis.destroy();
+    };
   }, []);
 }
