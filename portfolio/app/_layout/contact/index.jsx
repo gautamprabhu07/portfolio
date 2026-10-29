@@ -3,27 +3,37 @@
 
 import { useRef } from 'react';
 
-import { motion } from 'framer-motion';
-
 import { useContactSlider } from '@/hooks';
 
-import { SocialInfo, UserDetails } from './components';
+import { RippleField, SocialInfo, UserDetails } from './components';
 
+/**
+ * Closing section: a dark surface that ripples under the cursor, with the
+ * contact call to action, links and credits resting on top of it.
+ */
 export function Contact() {
   /** @type {import('react').MutableRefObject<HTMLElement>} */
   const containerRef = useRef(null);
-  const { transformX, transformY } = useContactSlider(containerRef);
+  const { transformX } = useContactSlider(containerRef);
 
   return (
-    <motion.footer
+    <footer
       ref={containerRef}
-      className='relative max-h-screen bg-foreground text-background'
-      style={{ y: transformY }}
+      className='relative isolate overflow-hidden bg-foreground text-background'
     >
-      <div style={{ paddingBlock: 'clamp(5em, 21vh, 12em)' }}>
-        <UserDetails transformX={transformX} />
-        <SocialInfo />
+      <RippleField />
+
+      <div className='container relative z-10'>
+        <div
+          style={{
+            paddingBlock: 'clamp(4em, 11vh, 8em) clamp(1.5em, 4vh, 2.5em)',
+            paddingInline: 'clamp(2.5em, 4vw, 8em)',
+          }}
+        >
+          <UserDetails transformX={transformX} />
+          <SocialInfo />
+        </div>
       </div>
-    </motion.footer>
+    </footer>
   );
 }
