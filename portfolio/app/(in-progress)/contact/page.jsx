@@ -1,12 +1,6 @@
-import { Transition } from '@/layout';
+import { Navbar, Transition } from '@/layout';
 
-import {
-  ContactContext,
-  ContactHero,
-  ContactLocation,
-  ContactMethods,
-  ContactResume,
-} from './_components';
+import { ContactStage } from './_components';
 
 /** @type {import('next').Metadata} */
 export const metadata = {
@@ -18,11 +12,8 @@ export const metadata = {
 export default function Contact() {
   return (
     <Transition>
-      <ContactHero />
-      <ContactMethods />
-      <ContactContext />
-      <ContactResume />
-      <ContactLocation />
+      <Navbar />
+      <ContactStage />
     </Transition>
   );
 }
