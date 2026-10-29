@@ -42,15 +42,6 @@ export const disciplines = [
   },
 ];
 
-/** What is happening right now. */
-export const nowItems = [
-  {
-    title: 'Eventory',
-    detail: 'Full-Stack Developer Intern · multi-vendor booking platform',
-    meta: 'Ongoing',
-  },
-];
-
 /**
  * Selected work, in the profile's suggested order. `image` is an existing
  * screenshot; projects without one get a spec card in the hover preview.

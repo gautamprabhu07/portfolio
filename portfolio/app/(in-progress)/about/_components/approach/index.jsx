@@ -148,7 +148,11 @@ export function AboutApproach() {
       </SectionLabel>
 
       <div className='grid gap-12 lg:grid-cols-12 lg:gap-16'>
-        <ul className='lg:col-span-7' role='tablist' aria-label='Areas of focus'>
+        <ul
+          className='lg:col-span-7 lg:pb-[35vh]'
+          role='tablist'
+          aria-label='Areas of focus'
+        >
           {groups.map(({ id, title }, index) => {
             const isActive = index === selected;
             return (
@@ -215,7 +219,7 @@ export function AboutApproach() {
           id='approach-panel'
           role='tabpanel'
           aria-labelledby={`approach-tab-${group.id}`}
-          className='hidden lg:sticky lg:top-28 lg:col-span-5 lg:block lg:min-h-[28rem] lg:self-start'
+          className='hidden lg:sticky lg:top-24 lg:col-span-5 lg:block lg:max-h-[calc(100vh-7rem)] lg:min-h-[min(28rem,calc(100vh-7rem))] lg:self-start lg:overflow-y-auto'
         >
           <AnimatePresence mode='wait'>
             <motion.div

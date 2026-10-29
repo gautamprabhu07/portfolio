@@ -36,6 +36,16 @@ function Chip({ item, index, active, onSelect, variant, pointerX, pointerY }) {
     <motion.li
       className={floating ? 'absolute' : undefined}
       style={floating ? { left, top, x, y } : undefined}
+      // Weighted entrance: each chip settles on a spring, one after another.
+      // (scale + opacity only; x/y belong to the pointer drift above)
+      initial={floating ? { opacity: 0, scale: 0.6 } : false}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        type: 'spring',
+        stiffness: 210,
+        damping: 17,
+        delay: floating ? 3.1 + index * 0.1 : 0,
+      }}
     >
       <button
         type='button'

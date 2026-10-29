@@ -1,3 +1,4 @@
+export * from './about-invite';
 export * from './about-tab';
 export * from './contact';
 export * from './description';
@@ -6,5 +7,5 @@ export * from './header';
 export * from './navbar';
 export * from './offcanvas';
 export * from './project';
+export * from './showcase';
 export * from './transition';
-export * from './work';

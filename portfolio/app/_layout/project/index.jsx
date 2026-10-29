@@ -17,11 +17,6 @@ export function Project() {
   const { transformX1, transformX2, transformY } =
     useProjectSlider(containerRef);
 
-  const firstSlider = projectOptions.first.map(({ type, source }) => {
-    const id = randomId();
-    return <ProjectSlider key={id} type={type} source={source} />;
-  });
-
   const secondSlider = projectOptions.second.map(({ type, source }) => {
     const id = randomId();
     return <ProjectSlider key={id} type={type} source={source} />;
@@ -52,16 +47,6 @@ export function Project() {
       </div>
       <div className='grid items-center'>
         <div className='bg-background'>
-          <motion.div
-            className='mb-10 flex gap-10'
-            style={{
-              width: '120vw',
-              x: transformX1,
-            }}
-          >
-            {firstSlider}
-          </motion.div>
-
           <motion.div
             className='mb-10 flex gap-10'
             style={{

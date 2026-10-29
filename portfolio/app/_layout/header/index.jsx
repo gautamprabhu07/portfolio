@@ -170,7 +170,7 @@ export function Header() {
       {/* Layer: floating disciplines (desktop). Small screens get the same
           content inline, in the intro section. */}
       <motion.div
-        className='absolute right-[5vw] top-[12%] z-10 hidden w-[min(27vw,23rem)] lg:block lg:[@media(max-height:760px)]:hidden'
+        className='absolute right-[6vw] top-[12%] z-10 hidden w-[min(27vw,23rem)] lg:block lg:[@media(max-height:760px)]:hidden'
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 3.2, ease: [0.33, 1, 0.68, 1] }}

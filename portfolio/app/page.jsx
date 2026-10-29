@@ -1,12 +1,13 @@
 // app/page.jsx
 import {
+  AboutInvite,
   Contact,
   Description,
   Header,
   Navbar,
   Project,
+  Showcase,
   Transition,
-  Work,
 } from '@/layout';
 
 /** @type {import('next').Metadata} */
@@ -18,12 +19,13 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <Transition>
+    <Transition stickySafe>
       <Navbar />
       <Header />
       <main>
         <Description />
-        <Work />
+        <Showcase />
+        <AboutInvite />
         <Project />
       </main>
       <Contact />
