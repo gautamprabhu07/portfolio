@@ -42,8 +42,8 @@ export function Description() {
           <DisciplineIndex />
         </div>
 
-        {/* Tablets and short laptops: the disciplines, inline */}
-        <div className='mt-14 max-md:hidden lg:hidden lg:[@media(max-height:760px)]:block'>
+        {/* Tablets and up: the disciplines, inline below the hero */}
+        <div className='mt-14 max-md:hidden'>
           <Disciplines variant='inline' />
         </div>
       </div>

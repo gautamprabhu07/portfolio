@@ -18,7 +18,6 @@ import { styled } from 'styled-components';
 import { ParallaxSlider } from '@/components';
 
 import { AboutTab } from '../about-tab';
-import { Disciplines } from '../disciplines';
 import { slideUp } from './variants';
 
 const ScrollIndicator = styled(motion.button)`
@@ -252,17 +251,6 @@ export function Header() {
           </div>
         </div>
       </div>
-
-      {/* Layer: floating disciplines (desktop). Small screens get the same
-          content inline, in the intro section. */}
-      <motion.div
-        className='absolute right-[6vw] top-[12%] z-10 hidden w-[min(27vw,23rem)] lg:block lg:[@media(max-height:760px)]:hidden'
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 3.2, ease: [0.33, 1, 0.68, 1] }}
-      >
-        <Disciplines variant='floating' pointerX={smoothX} pointerY={smoothY} />
-      </motion.div>
 
       {/* Layer: the way to /about, a tab on the right edge, always visible */}
       <AboutTab />
