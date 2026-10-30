@@ -6,6 +6,11 @@ export const Wrapper = styled.div`
   right: 0;
   margin: 1.5rem;
   z-index: 80;
+
+  /* phones use the bottom dock instead */
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const Burger = styled.span`

@@ -60,27 +60,39 @@ export function AboutHero() {
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
     >
-      <div className='container'>
+      <div className='container max-md:!px-0'>
         <div
-          className='flex min-h-[92vh] flex-col justify-end'
+          className='flex min-h-[92vh] flex-col justify-end max-md:min-h-[calc(100svh-10.5rem)] max-md:!px-6 max-md:!pb-5 max-md:!pt-16'
           style={{
             paddingBlock: 'clamp(8em, 20vh, 14em) clamp(2.5em, 5vh, 4em)',
             paddingInline: 'clamp(2.5em, 4vw, 8em)',
           }}
         >
-          <p className='mb-8 text-xs uppercase tracking-wider text-background/50'>
-            About
-          </p>
+          <div className='mb-5 flex items-center gap-4 md:mb-8 md:block'>
+            <Image
+              src='/images/about-1.png'
+              alt=''
+              aria-hidden='true'
+              width={96}
+              height={96}
+              priority
+              className='size-12 rounded-full ring-1 ring-background/30 md:hidden'
+            />
+            <p className='text-xs uppercase tracking-wider text-background/50'>
+              About
+              <span className='md:hidden'> · Gautam Prabhu</span>
+            </p>
+          </div>
 
           <motion.h1
             style={reduceMotion ? undefined : { x: headlineX }}
-            className='max-w-[15ch] text-[clamp(3rem,8.5vw,9.5rem)] font-normal leading-[1.1] tracking-tight'
+            className='max-w-[15ch] text-[clamp(3rem,8.5vw,9.5rem)] font-normal leading-[1.1] tracking-tight max-md:max-w-none max-md:text-[clamp(2.3rem,11.5vw,3.4rem)] max-md:leading-[1.04]'
           >
             <HeadlineReveal text={statement} />
           </motion.h1>
 
-          <div className='mt-16 grid items-end gap-10 lg:mt-20 lg:grid-cols-12'>
-            <div className='relative size-[clamp(110px,10vw,150px)] lg:col-span-6'>
+          <div className='mt-16 grid items-end gap-10 max-md:mt-6 max-md:gap-0 lg:mt-20 lg:grid-cols-12'>
+            <div className='relative size-[clamp(110px,10vw,150px)] max-md:hidden lg:col-span-6'>
               <motion.span
                 aria-hidden='true'
                 style={reduceMotion ? undefined : { scale: ringScale }}
@@ -109,7 +121,7 @@ export function AboutHero() {
               <ParallaxFade>
                 <Balancer
                   as='p'
-                  className='max-w-md text-base leading-relaxed text-background/70 lg:text-lg'
+                  className='max-w-md text-base leading-relaxed text-background/70 max-md:max-w-none max-md:text-[0.95rem] lg:text-lg'
                 >
                   Software developer across full-stack, backend and systems,
                   with a growing focus on cloud, AI agents and containers.
@@ -120,13 +132,16 @@ export function AboutHero() {
           </div>
 
           <ParallaxFade>
-            <dl className='mt-16 grid gap-8 border-t border-background/20 pt-8 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4'>
+            <dl className='mt-16 grid gap-8 border-t border-background/20 pt-8 max-md:mt-6 max-md:gap-0 max-md:pt-0 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4'>
               {facts.map(({ label, value }) => (
-                <div key={label}>
-                  <dt className='text-xs uppercase tracking-wider text-background/50'>
+                <div
+                  key={label}
+                  className='max-md:flex max-md:items-baseline max-md:justify-between max-md:gap-6 max-md:border-b max-md:border-background/15 max-md:py-2.5'
+                >
+                  <dt className='shrink-0 text-xs uppercase tracking-wider text-background/50'>
                     {label}
                   </dt>
-                  <dd className='mt-2 text-base lg:text-lg'>{value}</dd>
+                  <dd className='mt-2 text-base max-md:mt-0 max-md:text-right max-md:text-[0.82rem] max-md:leading-snug lg:text-lg'>{value}</dd>
                 </div>
               ))}
             </dl>

@@ -34,7 +34,7 @@ export function UserDetails({ transformX }) {
 
       <h2 className='flex flex-wrap items-center gap-x-[0.25em] gap-y-4 text-[clamp(3.25rem,9.5vw,11rem)] font-normal leading-[1.05] tracking-tight'>
         <Image
-          src='/images/contact-profile.png'
+          src='/images/footer-profile.jpg'
           alt='Gautam Prabhu'
           width={160}
           height={160}

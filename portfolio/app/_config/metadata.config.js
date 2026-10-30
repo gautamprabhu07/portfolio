@@ -17,9 +17,9 @@ export const rootMetadata = {
   creator: 'Gautam Prabhu',
   publisher: 'Gautam Prabhu',
   icons: {
-    icon: '/images/contact-profile.png',
-    shortcut: '/images/contact-profile.png',
-    apple: '/images/contact-profile.png',
+    icon: '/images/favicon-profile.png',
+    shortcut: '/images/favicon-profile.png',
+    apple: '/images/favicon-profile.png',
   },
   twitter: {
     card: 'summary_large_image',

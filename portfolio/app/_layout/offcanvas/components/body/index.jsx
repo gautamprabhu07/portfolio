@@ -50,7 +50,7 @@ function Row({ item, index, current, expanded, onActivate }) {
 
   return (
     <motion.li
-      className='relative min-h-0 shrink basis-0 border-t border-border transition-[flex-grow] duration-500 [transition-timing-function:cubic-bezier(0.76,0,0.24,1)] [contain:layout_paint]'
+      className='relative min-h-0 shrink basis-0 border-t border-border transition-[grow] duration-500 [contain:layout_paint] [transition-timing-function:cubic-bezier(0.76,0,0.24,1)]'
       style={{ flexGrow: expanded ? 3.2 : 1 }}
       initial={{ opacity: 0, y: 36 }}
       animate={{ opacity: 1, y: 0 }}

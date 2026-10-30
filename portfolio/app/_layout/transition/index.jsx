@@ -50,7 +50,7 @@ export function Transition({ children, stickySafe = false }) {
   return (
     <div
       key={pathname}
-      className={stickySafe ? 'overflow-clip' : 'overflow-hidden'}
+      className={stickySafe ? '[overflow:clip]' : 'overflow-hidden'}
     >
       <AnimatePresence mode='wait'>
         {isLoading ? <Preloader

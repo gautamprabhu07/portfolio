@@ -4,6 +4,7 @@ export * from './contact';
 export * from './description';
 export * from './disciplines';
 export * from './header';
+export * from './mobile-dock';
 export * from './navbar';
 export * from './offcanvas';
 export * from './project';

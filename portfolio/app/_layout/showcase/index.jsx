@@ -251,7 +251,7 @@ export function Showcase() {
     <motion.section
       ref={sectionRef}
       aria-label='Selected work'
-      className='relative z-10 text-clip bg-foreground text-background'
+      className='relative z-10 bg-foreground text-background [overflow:clip]'
       style={
         reduceMotion
           ? undefined

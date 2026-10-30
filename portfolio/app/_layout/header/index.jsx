@@ -62,14 +62,91 @@ const ScrollIndicator = styled(motion.button)`
     50% { transform: translateY(6px); }
   }
 
-  @media screen and (max-width: 768px) {
-    bottom: 2rem;
-    width: 48px;
-    height: 48px;
+  /* phones: the hero already fits one screen and the dock sits down here */
+  @media screen and (max-width: 767px) {
+    display: none;
   }
 `;
 
 const spring = { stiffness: 80, damping: 18, mass: 0.5 };
+
+const ticker = ['Full-Stack', 'Backend', 'Systems', 'Cloud', 'AI Agents', 'Containers'];
+
+/** One line of the stacked name, sliding in from the right behind a mask. */
+function NameLine({ children, delay, reduceMotion }) {
+  return (
+    <span className='block overflow-hidden pb-[0.06em]'>
+      <motion.span
+        className='block'
+        initial={reduceMotion ? { opacity: 0 } : { x: '105%' }}
+        animate={reduceMotion ? { opacity: 1 } : { x: 0 }}
+        transition={{ duration: 0.9, ease: [0.33, 1, 0.68, 1], delay }}
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+}
+
+function MobileIntro({ reduceMotion }) {
+  const base = 2.6;
+  const rise = (delay) => ({
+    initial: { opacity: 0, y: 14 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.7, ease: [0.33, 1, 0.68, 1], delay },
+  });
+
+  return (
+    <>
+      <motion.p
+        {...rise(base)}
+        className='mb-3 flex items-center gap-2 text-xs uppercase tracking-wider text-white/80'
+      >
+        <MoveDownRight size={16} strokeWidth={1.5} aria-hidden='true' />
+        Software Developer
+      </motion.p>
+
+      <h1 className='select-none text-[clamp(3.75rem,22vw,7rem)] font-normal leading-[0.9] tracking-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.55)]'>
+        <span className='sr-only'>Gautam Prabhu</span>
+        <span aria-hidden='true'>
+          <NameLine delay={base + 0.05} reduceMotion={reduceMotion}>
+            Gautam
+          </NameLine>
+          <NameLine delay={base + 0.2} reduceMotion={reduceMotion}>
+            Prabhu
+          </NameLine>
+        </span>
+      </h1>
+
+      <motion.div
+        {...rise(base + 0.55)}
+        className='mt-6 text-[1.3rem] font-medium leading-snug text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]'
+      >
+        <p>Full-Stack | Backend | Systems</p>
+        <p className='text-base font-normal opacity-90'>
+          Cloud, AI Agents &amp; Containers
+        </p>
+      </motion.div>
+
+      <motion.div
+        aria-hidden='true'
+        {...rise(base + 0.75)}
+        className='mt-6 select-none border-y border-white/30 py-2 text-xs uppercase tracking-wider text-white/85'
+      >
+        <ParallaxSlider repeat={4} baseVelocity={1.5}>
+          <span className='pe-4'>
+            {ticker.map((word) => (
+              <span key={word} className='pe-4'>
+                {word}
+                <span className='ps-4 text-white/40'>—</span>
+              </span>
+            ))}
+          </span>
+        </ParallaxSlider>
+      </motion.div>
+    </>
+  );
+}
 
 export function Header() {
   const containerRef = useRef(null);
@@ -111,7 +188,7 @@ export function Header() {
   return (
     <motion.header
       ref={containerRef}
-      className='relative h-screen overflow-hidden bg-secondary-foreground text-background'
+      className='relative h-screen overflow-hidden bg-secondary-foreground text-background max-md:h-svh'
       variants={slideUp}
       initial='initial'
       animate='enter'
@@ -125,7 +202,7 @@ export function Header() {
       >
         <Image
           src='/images/hero-profile.png'
-          className='object-cover'
+          className='object-cover max-md:object-[24%_center]'
           fill={true}
           sizes='100vw'
           alt='Gautam Prabhu Personal Picture'
@@ -136,7 +213,16 @@ export function Header() {
       {/* Subtle Dark Overlay for Better Contrast */}
       <div className='absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40' />
 
-      <div className='relative flex h-full flex-col justify-end gap-2 md:flex-col-reverse md:justify-normal'>
+      {/* Phones: a heavier bottom shade so the name stays readable */}
+      <div className='absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent md:hidden' />
+
+      {/* Phone composition: the name stacks and slides in, a ticker carries the
+          disciplines. Laptop/desktop keep the layout below untouched. */}
+      <div className='relative flex h-full flex-col justify-end px-6 pb-[calc(6.5rem+env(safe-area-inset-bottom))] pt-24 md:hidden'>
+        <MobileIntro reduceMotion={reduceMotion} />
+      </div>
+
+      <div className='relative flex h-full flex-col justify-end gap-2 max-md:hidden md:flex-col-reverse md:justify-normal'>
         {/* Animated Name */}
         <motion.div className='select-none' style={reduceMotion ? undefined : { x: nameX }}>
           <h1 className='text-[max(9em,15vw)] font-normal tracking-tight'>
