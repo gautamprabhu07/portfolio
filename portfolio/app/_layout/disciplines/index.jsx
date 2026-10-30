@@ -142,3 +142,4 @@ export function Disciplines({ variant = 'floating', pointerX, pointerY }) {
     </div>
   );
 }
+export * from './index-list';

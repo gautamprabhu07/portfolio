@@ -5,7 +5,7 @@ import Balancer from 'react-wrap-balancer';
 
 import { ParallaxFade, ParallaxReveal } from '@/components';
 
-import { Disciplines } from '../disciplines';
+import { DisciplineIndex, Disciplines } from '../disciplines';
 
 const phrase =
   'I build and ship end to end: a workflow platform used by 500+ people, a containerized ERP backend on Kubernetes, microservices on Kafka, an LLM multi-agent system, an explainable credit-risk ML service, and a Linux container runtime written from scratch in C.';
@@ -37,8 +37,13 @@ export function Description() {
           </div>
         </div>
 
-        {/* Small screens: the disciplines, inline */}
-        <div className='mt-14 lg:hidden lg:[@media(max-height:760px)]:block'>
+        {/* Phones: the disciplines as an openable index */}
+        <div className='mt-14 md:hidden'>
+          <DisciplineIndex />
+        </div>
+
+        {/* Tablets and short laptops: the disciplines, inline */}
+        <div className='mt-14 max-md:hidden lg:hidden lg:[@media(max-height:760px)]:block'>
           <Disciplines variant='inline' />
         </div>
       </div>
